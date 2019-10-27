@@ -379,7 +379,7 @@
             this.ClientSize = new System.Drawing.Size(948, 326);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Multi Quick Tune ";
+            this.Text = "QO-100 WB Multi Quick Tune 0.4b ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
