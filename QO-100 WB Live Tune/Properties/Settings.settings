@@ -1,0 +1,22 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QO_100_WB_Live_Tune.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="lnb_offset" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9750000</Value>
+    </Setting>
+    <Setting Name="mt_ip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">232.0.0.11</Value>
+    </Setting>
+    <Setting Name="mt_port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6789</Value>
+    </Setting>
+    <Setting Name="ReceiverList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;232.0.0.11,6789,9750000&lt;/string&gt;
+  &lt;string&gt;232.0.0.11,6790,9750000&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
