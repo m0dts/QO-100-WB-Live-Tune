@@ -263,7 +263,7 @@ namespace QO_100_WB_Live_Tune
                             rx_blocks[rx - 1, 2] = rx;
                             int freq = Convert.ToInt32((sig[1] + 10000.0) * 1000);
                             int sr = Convert.ToInt32((sig[2] * 1000.0));
-                            byte[] outStream = Encoding.ASCII.GetBytes("[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text);
+                            byte[] outStream = Encoding.ASCII.GetBytes("[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text+"\n");
                          //   string test = "[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text;
                                 IPAddress ip = System.Net.IPAddress.Parse(RxList.Items[rx - 1].SubItems[0].Text);
                             int port = Convert.ToInt16(RxList.Items[rx - 1].SubItems[1].Text);
