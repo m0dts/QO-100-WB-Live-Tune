@@ -8,4 +8,4 @@ If you have multiple receivers the area of the spectrum plot is split up and all
 
 Various parts of the code come from the batc page javascriipt here: https://eshail.batc.org.uk/wb/
 
-A pre-compiled version is included in the zip file.
+A pre-compiled version is included in the releases tab.
