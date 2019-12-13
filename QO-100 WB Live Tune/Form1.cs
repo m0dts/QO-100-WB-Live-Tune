@@ -1,22 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using WebSocketSharp;
 
 namespace QO_100_WB_Live_Tune
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
+ 
             InitializeComponent();
+
             this.FormClosing += Form1_FormClosing;
             Load += new EventHandler(Form1_Load);
+
         }
+
+
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -39,7 +51,38 @@ namespace QO_100_WB_Live_Tune
             comboBox_22KHz.SelectedIndex = 1;
             comboBox_DVBMode.SelectedIndex = 0;
 
+            try
+            {
+                bandplan = XElement.Load(@"bandplan.xml");
+                drawspectrum_bandplan();
+            }
+            catch
+            {
+                MessageBox.Show("Can't find bandplan.xml, unable to load band plan.");
+            }
 
+            timeout.Interval = 5000;
+            timeout.Elapsed += Timeout_Elapsed;
+            
+        }
+
+        private void Timeout_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            connected = false;
+            ws.Close();
+
+            if (InvokeRequired)
+            {
+                Invoke(new MethodInvoker(() =>
+                {
+                    button1.Text = "Connect";
+                }));
+            }
+            else
+            {
+                button1.Text = "Connect";
+            }
+            MessageBox.Show("Lost Network Connection.");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,12 +105,15 @@ namespace QO_100_WB_Live_Tune
         static int width = 922;     //web monitor uses 922 points, 6 padded?
         static int height = 255;    //makes things easier
 
-        static Bitmap bmp = new Bitmap(width, height);
+        static Bitmap bmp = new Bitmap(width, height+15);
+        static Bitmap bmp2 = new Bitmap(width, 15);     //bandplan
         Pen greenpen = new Pen(Color.FromArgb(200, 20, 200, 20));
         Pen greypen = new Pen(Color.Gray, width: 1) { DashPattern = new[] { 10f, 10f } };
         SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(75, Color.Gray));
+        SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(100, 150,150,255));
 
         Graphics tmp = Graphics.FromImage(bmp);
+        Graphics tmp2 = Graphics.FromImage(bmp2);
 
         UInt16[] fft_data;  //array of spectrum values
         List<List<double>> signals = new List<List<double>>();  //list of signals found: 
@@ -78,6 +124,9 @@ namespace QO_100_WB_Live_Tune
         System.Net.IPEndPoint sending_end_point;
 
         int[,] rx_blocks= new int[6,3];
+        XElement bandplan;
+        System.Timers.Timer timeout = new System.Timers.Timer();        //detect websocket timeout
+
 
 
 
@@ -89,14 +138,19 @@ namespace QO_100_WB_Live_Tune
                 ws.OnOpen += (ss, ee) => { connected = true; button1.Text = "Disconnect"; };
                 ws.OnClose += (ss, ee) => { connected = false; button1.Text = "Connect"; };
                 ws.Connect();
+                timeout.Enabled = true;
             }
             else{
                 ws.Close();
+                timeout.Enabled = false;
             }
         }
 
         private void NewData(object sender, byte[] data)
         {
+            timeout.Stop();     //restart websocket activity timer
+            timeout.Start();
+
             //Console.WriteLine(data[0]);
             fft_data = new UInt16[data.Length/2];
             
@@ -121,11 +175,56 @@ namespace QO_100_WB_Live_Tune
 
         }
 
+
+     
+
+ 
+
+        private void drawspectrum_bandplan()
+        {
+
+            double start_freq = 10490.75f;
+            int span = 9;
+
+            foreach (var channel in bandplan.Elements("channel"))
+            {
+                int w = 0;
+                int offset = 0;
+                float rolloff = 1.35f;
+                float freq = Convert.ToSingle(channel.Element("x-freq").Value);
+                int sr= Convert.ToInt32(channel.Element("sr").Value);
+
+                int pos = Convert.ToInt16((922.0 / span) * (freq - start_freq));
+                w = Convert.ToInt32(sr  / (span * 1000.0) * 922 * rolloff);
+
+                switch (channel.Element("sr").Value)
+                {
+                    case "2000":
+                        offset = 8;
+                        break;
+                    case "1000":
+                        offset = 0;
+                        break;
+                    case "333":
+                        offset = 8;
+                        break;
+                    case "125":
+                        offset = 0;
+                        break;
+                }
+
+                tmp2.FillRectangles(bandplanBrush, new RectangleF[] { new System.Drawing.Rectangle(pos - (w / 2), offset, w, 3) });      //x,y,w,h
+            }
+
+          
+        }
+
+
         private void drawspectrum(UInt16[] fft_data, List<List<double>> signals)
         {
             int receivers = RxList.Items.Count;
             tmp.Clear(Color.Black);     //clear canvas
-
+            tmp.DrawImage(bmp2, new Point(0, 255)); //bandplan
 
             //draw lines to segment y axis determining where to click for each receiver
             if (receivers >= 1)
@@ -144,7 +243,7 @@ namespace QO_100_WB_Live_Tune
                     if(rx_blocks[i, 0] >0)
                     {
                         //draw block showing signal selected
-                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), 255-y, rx_blocks[i, 1], (255 / receivers)) });
+                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), 255-y, rx_blocks[i, 1], (255 / receivers)) });
 
                     }
                 }
@@ -161,7 +260,7 @@ namespace QO_100_WB_Live_Tune
                 //draw the text for each signal found
                 foreach (List<double> sig in signals)
                 {
-                    tmp.DrawString(sig[1].ToString("#.000") + " " + sig[2].ToString("#.000Ms"), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(sig[0] - 50), (255 - Convert.ToSingle(sig[3] + 30))));
+                    tmp.DrawString(sig[1].ToString("#.000") + " " + (sig[2]*1000).ToString("#Ks"), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(sig[0] - 50), (255 - Convert.ToSingle(sig[3] + 30))));
                 }
             }
 
@@ -170,6 +269,8 @@ namespace QO_100_WB_Live_Tune
 
         private void spectrum_Click(object sender, EventArgs e)
         {
+
+  
             if (RxList.Items.Count > 0)       //check we have a receiver setup before sending anything!
             {
                 MouseEventArgs me = (MouseEventArgs)e;
@@ -263,7 +364,7 @@ namespace QO_100_WB_Live_Tune
                             rx_blocks[rx - 1, 2] = rx;
                             int freq = Convert.ToInt32((sig[1] + 10000.0) * 1000);
                             int sr = Convert.ToInt32((sig[2] * 1000.0));
-                            byte[] outStream = Encoding.ASCII.GetBytes("[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text);
+                            byte[] outStream = Encoding.ASCII.GetBytes("[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text+"\n");
                          //   string test = "[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text;
                                 IPAddress ip = System.Net.IPAddress.Parse(RxList.Items[rx - 1].SubItems[0].Text);
                             int port = Convert.ToInt16(RxList.Items[rx - 1].SubItems[1].Text);
@@ -359,6 +460,7 @@ namespace QO_100_WB_Live_Tune
                         {
                             in_signal = true;
                             start_signal = i;
+                            
                         }
                     }
                     else /* in_signal == true */
@@ -368,8 +470,12 @@ namespace QO_100_WB_Live_Tune
                             in_signal = false;
 
                             end_signal = i;
+                            
                             acc = 0;
                             acc_i = 0;
+                           // Console.WriteLine(Convert.ToInt16(start_signal + (0.3 * (end_signal - start_signal))));
+                          //  Console.WriteLine( start_signal + (0.7 * (end_signal - start_signal)));
+
                             for (j = Convert.ToInt16(start_signal + (0.3 * (end_signal - start_signal))) | 0; j < start_signal + (0.7 * (end_signal - start_signal)); j++)
                             {
                                 acc = acc + fft_data[j];
@@ -391,7 +497,9 @@ namespace QO_100_WB_Live_Tune
                             {
                                 end_signal = j;
                             }
-
+                          //  Console.WriteLine("Start:" + start_signal.ToString());
+                          //  Console.WriteLine("End:" + end_signal.ToString());
+                           // Console.WriteLine("Strength:" + strength_signal.ToString());
                             mid_signal = Convert.ToSingle(start_signal + ((end_signal - start_signal) / 2.0));
 
                             signal_bw = align_symbolrate(Convert.ToSingle((end_signal - start_signal) * (9.0 / fft_data.Length)));
@@ -443,10 +551,7 @@ namespace QO_100_WB_Live_Tune
         }
 
     
-        private void RxList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -455,5 +560,11 @@ namespace QO_100_WB_Live_Tune
                 RxList.Items[RxList.SelectedIndices[0]].Remove();
             }
         }
+
+    
+
+        
+
+     
     }
 }

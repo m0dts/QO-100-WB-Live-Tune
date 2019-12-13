@@ -1,4 +1,6 @@
-﻿namespace QO_100_WB_Live_Tune
+﻿using System.IO;
+
+namespace QO_100_WB_Live_Tune
 {
     partial class Form1
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
             this.mt_ip = new System.Windows.Forms.TextBox();
             this.mt_port = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,6 +40,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.spectrum = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,26 +62,19 @@
             this.LNB22KHz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Mode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(17, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // mt_ip
             // 
-            this.mt_ip.Location = new System.Drawing.Point(660, 30);
+            this.mt_ip.Location = new System.Drawing.Point(72, 23);
             this.mt_ip.Name = "mt_ip";
             this.mt_ip.Size = new System.Drawing.Size(66, 20);
             this.mt_ip.TabIndex = 2;
@@ -86,7 +82,7 @@
             // 
             // mt_port
             // 
-            this.mt_port.Location = new System.Drawing.Point(660, 59);
+            this.mt_port.Location = new System.Drawing.Point(72, 52);
             this.mt_port.Name = "mt_port";
             this.mt_port.Size = new System.Drawing.Size(66, 20);
             this.mt_port.TabIndex = 3;
@@ -95,7 +91,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(596, 33);
+            this.label1.Location = new System.Drawing.Point(8, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 4;
@@ -104,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(596, 62);
+            this.label2.Location = new System.Drawing.Point(8, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 5;
@@ -113,7 +109,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(595, 88);
+            this.label3.Location = new System.Drawing.Point(7, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 7;
@@ -121,7 +117,7 @@
             // 
             // lnb_offset
             // 
-            this.lnb_offset.Location = new System.Drawing.Point(660, 85);
+            this.lnb_offset.Location = new System.Drawing.Point(72, 78);
             this.lnb_offset.Name = "lnb_offset";
             this.lnb_offset.Size = new System.Drawing.Size(66, 20);
             this.lnb_offset.TabIndex = 6;
@@ -134,7 +130,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(943, 324);
+            this.tabControl1.Size = new System.Drawing.Size(940, 335);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -144,7 +140,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(935, 298);
+            this.tabPage1.Size = new System.Drawing.Size(932, 309);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Display";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -154,10 +150,20 @@
             this.spectrum.BackColor = System.Drawing.Color.Black;
             this.spectrum.Location = new System.Drawing.Point(6, 35);
             this.spectrum.Name = "spectrum";
-            this.spectrum.Size = new System.Drawing.Size(922, 255);
+            this.spectrum.Size = new System.Drawing.Size(922, 270);
             this.spectrum.TabIndex = 2;
             this.spectrum.TabStop = false;
             this.spectrum.Click += new System.EventHandler(this.spectrum_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(17, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Connect";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabPage2
             // 
@@ -166,7 +172,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(935, 298);
+            this.tabPage2.Size = new System.Drawing.Size(932, 309);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -180,30 +186,16 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "You can add multiple Minitioune Receiver UDP settings.\r\nClick on each \'band\' of t" +
     "he spectrum to control each receiver.\r\nThe numbers on the left correspond to the" +
-    " receiver.\r\nV0.4b 27/10/2019";
+    " receiver.\r\nV0.7b 13/12/2019";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.comboBox_DVBMode);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.comboBox_22KHz);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.comboBox_lnbvolts);
-            this.groupBox1.Controls.Add(this.comboBox_rxsocket);
             this.groupBox1.Controls.Add(this.RxList);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.mt_ip);
-            this.groupBox1.Controls.Add(this.lnb_offset);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.mt_port);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(906, 180);
+            this.groupBox1.Size = new System.Drawing.Size(909, 214);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receiver List - UDP Control";
@@ -221,7 +213,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(747, 115);
+            this.label8.Location = new System.Drawing.Point(159, 108);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 13);
             this.label8.TabIndex = 17;
@@ -235,7 +227,7 @@
             "Auto",
             "DVB-S",
             "DVB-S2"});
-            this.comboBox_DVBMode.Location = new System.Drawing.Point(812, 112);
+            this.comboBox_DVBMode.Location = new System.Drawing.Point(224, 105);
             this.comboBox_DVBMode.MaxDropDownItems = 3;
             this.comboBox_DVBMode.Name = "comboBox_DVBMode";
             this.comboBox_DVBMode.Size = new System.Drawing.Size(66, 21);
@@ -244,7 +236,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(747, 88);
+            this.label7.Location = new System.Drawing.Point(159, 81);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 13);
             this.label7.TabIndex = 15;
@@ -257,7 +249,7 @@
             this.comboBox_22KHz.Items.AddRange(new object[] {
             "On",
             "Off"});
-            this.comboBox_22KHz.Location = new System.Drawing.Point(812, 85);
+            this.comboBox_22KHz.Location = new System.Drawing.Point(224, 78);
             this.comboBox_22KHz.MaxDropDownItems = 3;
             this.comboBox_22KHz.Name = "comboBox_22KHz";
             this.comboBox_22KHz.Size = new System.Drawing.Size(66, 21);
@@ -266,7 +258,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(747, 60);
+            this.label6.Location = new System.Drawing.Point(159, 53);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 13;
@@ -275,7 +267,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(747, 33);
+            this.label5.Location = new System.Drawing.Point(159, 26);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 12;
@@ -289,7 +281,7 @@
             "0",
             "13",
             "18"});
-            this.comboBox_lnbvolts.Location = new System.Drawing.Point(812, 57);
+            this.comboBox_lnbvolts.Location = new System.Drawing.Point(224, 50);
             this.comboBox_lnbvolts.MaxDropDownItems = 3;
             this.comboBox_lnbvolts.Name = "comboBox_lnbvolts";
             this.comboBox_lnbvolts.Size = new System.Drawing.Size(66, 21);
@@ -302,7 +294,7 @@
             this.comboBox_rxsocket.Items.AddRange(new object[] {
             "A",
             "B"});
-            this.comboBox_rxsocket.Location = new System.Drawing.Point(812, 30);
+            this.comboBox_rxsocket.Location = new System.Drawing.Point(224, 23);
             this.comboBox_rxsocket.MaxDropDownItems = 2;
             this.comboBox_rxsocket.Name = "comboBox_rxsocket";
             this.comboBox_rxsocket.Size = new System.Drawing.Size(66, 21);
@@ -327,7 +319,6 @@
             this.RxList.TabIndex = 9;
             this.RxList.UseCompatibleStateImageBehavior = false;
             this.RxList.View = System.Windows.Forms.View.Details;
-            this.RxList.SelectedIndexChanged += new System.EventHandler(this.RxList_SelectedIndexChanged);
             this.RxList.DoubleClick += new System.EventHandler(this.RxList_DoubleClick);
             // 
             // Address
@@ -364,7 +355,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(683, 139);
+            this.button2.Location = new System.Drawing.Point(95, 135);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(127, 23);
             this.button2.TabIndex = 8;
@@ -372,28 +363,51 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.comboBox_DVBMode);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.comboBox_22KHz);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.comboBox_lnbvolts);
+            this.groupBox2.Controls.Add(this.comboBox_rxsocket);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.mt_ip);
+            this.groupBox2.Controls.Add(this.lnb_offset);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.mt_port);
+            this.groupBox2.Location = new System.Drawing.Point(588, 16);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(308, 174);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Setup a New Receiver:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 326);
+            this.ClientSize = new System.Drawing.Size(945, 341);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Multi Quick Tune 0.4b ";
+            this.Text = "QO-100 WB Multi Quick Tune 0.7b ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox mt_ip;
         private System.Windows.Forms.TextBox mt_port;
         private System.Windows.Forms.Label label1;
@@ -401,8 +415,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox lnb_offset;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.PictureBox spectrum;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView RxList;
@@ -424,6 +436,11 @@
         private System.Windows.Forms.ColumnHeader LNB22KHz;
         private System.Windows.Forms.ColumnHeader Mode;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.PictureBox spectrum;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
