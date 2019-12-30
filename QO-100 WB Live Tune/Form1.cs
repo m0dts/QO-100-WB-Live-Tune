@@ -50,16 +50,20 @@ namespace QO_100_WB_Live_Tune
             comboBox_lnbvolts.SelectedIndex = 0;
             comboBox_22KHz.SelectedIndex = 1;
             comboBox_DVBMode.SelectedIndex = 0;
+  
+
 
             try
             {
-                bandplan = XElement.Load(@"bandplan.xml");
+                bandplan = XElement.Load(Path.GetDirectoryName(Application.ExecutablePath) + @"\bandplan.xml");
                 drawspectrum_bandplan();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Can't find bandplan.xml, unable to load band plan.");
+                MessageBox.Show(ex.Message);
             }
+
+            
 
             timeout.Interval = 5000;
             timeout.Elapsed += Timeout_Elapsed;
@@ -68,6 +72,9 @@ namespace QO_100_WB_Live_Tune
 
         private void Timeout_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            timeout.Enabled = false;
+            MessageBox.Show("No Network Connection...", this.Text);
+           
             connected = false;
             ws.Close();
 
@@ -82,7 +89,11 @@ namespace QO_100_WB_Live_Tune
             {
                 button1.Text = "Connect";
             }
-            MessageBox.Show("Lost Network Connection.");
+
+           
+            
+
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -109,7 +120,7 @@ namespace QO_100_WB_Live_Tune
         static Bitmap bmp2 = new Bitmap(width, 15);     //bandplan
         Pen greenpen = new Pen(Color.FromArgb(200, 20, 200, 20));
         Pen greypen = new Pen(Color.Gray, width: 1) { DashPattern = new[] { 10f, 10f } };
-        SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(75, Color.Gray));
+        SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(128, Color.Gray));
         SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(100, 150,150,255));
 
         Graphics tmp = Graphics.FromImage(bmp);
@@ -133,7 +144,7 @@ namespace QO_100_WB_Live_Tune
         private void button1_Click(object sender, EventArgs e)
         {
             if (!connected) {
-                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft");
+                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft_m0dtslivetune");
                 ws.OnMessage += (ss, ee) => NewData(sender, ee.RawData);
                 ws.OnOpen += (ss, ee) => { connected = true; button1.Text = "Disconnect"; };
                 ws.OnClose += (ss, ee) => { connected = false; button1.Text = "Connect"; };
@@ -243,7 +254,7 @@ namespace QO_100_WB_Live_Tune
                     if(rx_blocks[i, 0] >0)
                     {
                         //draw block showing signal selected
-                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), 255-y, rx_blocks[i, 1], (255 / receivers)) });
+                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), 255-y+1, rx_blocks[i, 1], (255 / receivers)-4) });
 
                     }
                 }
@@ -252,6 +263,7 @@ namespace QO_100_WB_Live_Tune
 
             for (int i = 1; i < fft_data.Length-8; i++)     //ignore padding?
             {
+
                 tmp.DrawLine(greenpen, i-1, 255-fft_data[i-1]/255, i, 255-fft_data[i]/255);
             }
 

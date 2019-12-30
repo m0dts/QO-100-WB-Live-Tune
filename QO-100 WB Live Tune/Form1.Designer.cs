@@ -44,7 +44,7 @@ namespace QO_100_WB_Live_Tune
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox_DVBMode = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,6 +53,8 @@ namespace QO_100_WB_Live_Tune
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_lnbvolts = new System.Windows.Forms.ComboBox();
             this.comboBox_rxsocket = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.RxList = new System.Windows.Forms.ListView();
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,9 +63,7 @@ namespace QO_100_WB_Live_Tune
             this.LNBvolts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LNB22KHz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Mode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button2 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
@@ -186,7 +186,7 @@ namespace QO_100_WB_Live_Tune
             this.label4.TabIndex = 1;
             this.label4.Text = "You can add multiple Minitioune Receiver UDP settings.\r\nClick on each \'band\' of t" +
     "he spectrum to control each receiver.\r\nThe numbers on the left correspond to the" +
-    " receiver.\r\nV0.7b 13/12/2019";
+    " receiver.\r\nV0.8b 30/12/2019";
             // 
             // groupBox1
             // 
@@ -200,15 +200,29 @@ namespace QO_100_WB_Live_Tune
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Receiver List - UDP Control";
             // 
-            // button3
+            // groupBox2
             // 
-            this.button3.Location = new System.Drawing.Point(18, 139);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Remove Selected Row";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.comboBox_DVBMode);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.comboBox_22KHz);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.comboBox_lnbvolts);
+            this.groupBox2.Controls.Add(this.comboBox_rxsocket);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.mt_ip);
+            this.groupBox2.Controls.Add(this.lnb_offset);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.mt_port);
+            this.groupBox2.Location = new System.Drawing.Point(588, 16);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(308, 174);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Setup a New Receiver:";
             // 
             // label8
             // 
@@ -300,6 +314,26 @@ namespace QO_100_WB_Live_Tune
             this.comboBox_rxsocket.Size = new System.Drawing.Size(66, 21);
             this.comboBox_rxsocket.TabIndex = 10;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(95, 135);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(127, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Add New Receiver";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(18, 139);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 23);
+            this.button3.TabIndex = 18;
+            this.button3.Text = "Remove Selected Row";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // RxList
             // 
             this.RxList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -353,40 +387,6 @@ namespace QO_100_WB_Live_Tune
             // 
             this.Mode.Text = "Mode";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(95, 135);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Add New Receiver";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.comboBox_DVBMode);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.comboBox_22KHz);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.comboBox_lnbvolts);
-            this.groupBox2.Controls.Add(this.comboBox_rxsocket);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.mt_ip);
-            this.groupBox2.Controls.Add(this.lnb_offset);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.mt_port);
-            this.groupBox2.Location = new System.Drawing.Point(588, 16);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(308, 174);
-            this.groupBox2.TabIndex = 19;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Setup a New Receiver:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,7 +394,7 @@ namespace QO_100_WB_Live_Tune
             this.ClientSize = new System.Drawing.Size(945, 341);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Multi Quick Tune 0.7b ";
+            this.Text = "QO-100 WB Multi Quick Tune 0.8b ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
