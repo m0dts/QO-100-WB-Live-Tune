@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -23,6 +24,7 @@ namespace QO_100_WB_Live_Tune
             this.FormClosing += Form1_FormClosing;
             Load += new EventHandler(Form1_Load);
 
+            
         }
 
 
@@ -50,12 +52,13 @@ namespace QO_100_WB_Live_Tune
             comboBox_lnbvolts.SelectedIndex = 0;
             comboBox_22KHz.SelectedIndex = 1;
             comboBox_DVBMode.SelectedIndex = 0;
-  
 
+            var orig_culture = CultureInfo.CurrentCulture;
+            CultureInfo.CurrentCulture = new CultureInfo("en-US");     //uses . for number seperator
 
             try
             {
-                bandplan = XElement.Load(Path.GetDirectoryName(Application.ExecutablePath) + @"\bandplan.xml");
+                bandplan = XElement.Load(Path.GetDirectoryName(Application.ExecutablePath) + @"\bandplan.xml");         
                 drawspectrum_bandplan();
             }
             catch (Exception ex)
@@ -63,8 +66,7 @@ namespace QO_100_WB_Live_Tune
                 MessageBox.Show(ex.Message);
             }
 
-            
-
+            CultureInfo.CurrentCulture = orig_culture;
             timeout.Interval = 5000;
             timeout.Elapsed += Timeout_Elapsed;
             
