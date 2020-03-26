@@ -186,7 +186,8 @@ namespace QO_100_WB_Live_Tune
             this.label4.TabIndex = 1;
             this.label4.Text = "You can add multiple Minitioune Receiver UDP settings.\r\nClick on each \'band\' of t" +
     "he spectrum to control each receiver.\r\nThe numbers on the left correspond to the" +
-    " receiver.\r\nV0.8b 30/12/2019";
+    " receiver.\r\nV0.9b 25/03/2020";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // groupBox1
             // 
@@ -394,7 +395,7 @@ namespace QO_100_WB_Live_Tune
             this.ClientSize = new System.Drawing.Size(945, 341);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Multi Quick Tune 0.8b ";
+            this.Text = "QO-100 WB Multi Quick Tune 0.9b ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();

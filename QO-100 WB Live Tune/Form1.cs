@@ -69,7 +69,11 @@ namespace QO_100_WB_Live_Tune
             CultureInfo.CurrentCulture = orig_culture;
             timeout.Interval = 5000;
             timeout.Elapsed += Timeout_Elapsed;
-            
+
+
+            button1_Click(this,null);
+
+
         }
 
         private void Timeout_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -140,7 +144,7 @@ namespace QO_100_WB_Live_Tune
         XElement bandplan;
         System.Timers.Timer timeout = new System.Timers.Timer();        //detect websocket timeout
 
-
+        double start_freq = 10490.5f;
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -158,6 +162,7 @@ namespace QO_100_WB_Live_Tune
                 timeout.Enabled = false;
             }
         }
+
 
         private void NewData(object sender, byte[] data)
         {
@@ -196,7 +201,7 @@ namespace QO_100_WB_Live_Tune
         private void drawspectrum_bandplan()
         {
 
-            double start_freq = 10490.75f;
+            
             int span = 9;
 
             foreach (var channel in bandplan.Elements("channel"))
@@ -263,7 +268,7 @@ namespace QO_100_WB_Live_Tune
             }
 
 
-            for (int i = 1; i < fft_data.Length-8; i++)     //ignore padding?
+            for (int i = 1; i < fft_data.Length-3; i++)     //ignore padding?
             {
 
                 tmp.DrawLine(greenpen, i-1, 255-fft_data[i-1]/255, i, 255-fft_data[i]/255);
@@ -376,7 +381,7 @@ namespace QO_100_WB_Live_Tune
                             rx_blocks[rx - 1, 0] = Convert.ToInt16(sig[0]);
                             rx_blocks[rx - 1, 1] = Convert.ToInt16(sig[5] - sig[4]);
                             rx_blocks[rx - 1, 2] = rx;
-                            int freq = Convert.ToInt32((sig[1] + 10000.0) * 1000);
+                            int freq = Convert.ToInt32((sig[1] ) * 1000);
                             int sr = Convert.ToInt32((sig[2] * 1000.0));
                             byte[] outStream = Encoding.ASCII.GetBytes("[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text+"\n");
                          //   string test = "[GlobalMsg],Freq=" + freq.ToString() + ",Offset=" + RxList.Items[rx - 1].SubItems[2].Text + ",Doppler=0,Srate=" + sr.ToString() + ",WideScan=0,LowSR=0,DVBmode=" + RxList.Items[rx - 1].SubItems[6].Text + ",FPlug=" + RxList.Items[rx - 1].SubItems[3].Text + ",Voltage=" + RxList.Items[rx - 1].SubItems[4].Text + ",22kHz=" + RxList.Items[rx - 1].SubItems[5].Text;
@@ -517,7 +522,7 @@ namespace QO_100_WB_Live_Tune
                             mid_signal = Convert.ToSingle(start_signal + ((end_signal - start_signal) / 2.0));
 
                             signal_bw = align_symbolrate(Convert.ToSingle((end_signal - start_signal) * (9.0 / fft_data.Length)));
-                            signal_freq = Convert.ToSingle(490.75 + (((mid_signal + 1) / fft_data.Length) * 9.0));
+                            signal_freq = Convert.ToSingle(start_freq + (((mid_signal + 1) / fft_data.Length) * 9.0));
 
                             // Exclude signals in beacon band
                             if (signal_bw >= 0.033)
@@ -575,10 +580,9 @@ namespace QO_100_WB_Live_Tune
             }
         }
 
-    
+        private void label4_Click(object sender, EventArgs e)
+        {
 
-        
-
-     
+        }
     }
 }
