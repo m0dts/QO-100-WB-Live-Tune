@@ -74,5 +74,41 @@ namespace QO_100_WB_Live_Tune.Properties {
                 this["ReceiverList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double Opacity {
+            get {
+                return ((double)(this["Opacity"]));
+            }
+            set {
+                this["Opacity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Minimal {
+            get {
+                return ((bool)(this["Minimal"]));
+            }
+            set {
+                this["Minimal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Location {
+            get {
+                return ((global::System.Drawing.Point)(this["Location"]));
+            }
+            set {
+                this["Location"] = value;
+            }
+        }
     }
 }

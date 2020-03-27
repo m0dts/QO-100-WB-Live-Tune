@@ -40,8 +40,11 @@ namespace QO_100_WB_Live_Tune
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.spectrum = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox_minimal = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.trackBar_opacity = new System.Windows.Forms.TrackBar();
+            this.checkBox_ontop = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,10 +67,13 @@ namespace QO_100_WB_Live_Tune
             this.LNB22KHz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Mode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button_close = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_opacity)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -127,55 +133,97 @@ namespace QO_100_WB_Live_Tune
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(940, 335);
+            this.tabControl1.Size = new System.Drawing.Size(929, 328);
             this.tabControl1.TabIndex = 8;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Black;
+            this.tabPage1.Controls.Add(this.button_close);
             this.tabPage1.Controls.Add(this.spectrum);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(932, 309);
+            this.tabPage1.Size = new System.Drawing.Size(921, 302);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Display";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // spectrum
             // 
             this.spectrum.BackColor = System.Drawing.Color.Black;
-            this.spectrum.Location = new System.Drawing.Point(6, 35);
+            this.spectrum.Location = new System.Drawing.Point(-1, 36);
+            this.spectrum.Margin = new System.Windows.Forms.Padding(0);
             this.spectrum.Name = "spectrum";
             this.spectrum.Size = new System.Drawing.Size(922, 270);
             this.spectrum.TabIndex = 2;
             this.spectrum.TabStop = false;
             this.spectrum.Click += new System.EventHandler(this.spectrum_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(17, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox_minimal);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.trackBar_opacity);
+            this.tabPage2.Controls.Add(this.checkBox_ontop);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(932, 309);
+            this.tabPage2.Size = new System.Drawing.Size(921, 302);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_minimal
+            // 
+            this.checkBox_minimal.AutoSize = true;
+            this.checkBox_minimal.Location = new System.Drawing.Point(532, 261);
+            this.checkBox_minimal.Name = "checkBox_minimal";
+            this.checkBox_minimal.Size = new System.Drawing.Size(61, 17);
+            this.checkBox_minimal.TabIndex = 11;
+            this.checkBox_minimal.Text = "Minimal";
+            this.checkBox_minimal.UseVisualStyleBackColor = true;
+            this.checkBox_minimal.CheckedChanged += new System.EventHandler(this.checkBox_minimal_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(691, 254);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Opacity";
+            // 
+            // trackBar_opacity
+            // 
+            this.trackBar_opacity.AutoSize = false;
+            this.trackBar_opacity.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.trackBar_opacity.Location = new System.Drawing.Point(740, 249);
+            this.trackBar_opacity.Maximum = 100;
+            this.trackBar_opacity.Minimum = 25;
+            this.trackBar_opacity.Name = "trackBar_opacity";
+            this.trackBar_opacity.Size = new System.Drawing.Size(175, 26);
+            this.trackBar_opacity.TabIndex = 9;
+            this.trackBar_opacity.TickFrequency = 10;
+            this.trackBar_opacity.Value = 100;
+            // 
+            // checkBox_ontop
+            // 
+            this.checkBox_ontop.AutoSize = true;
+            this.checkBox_ontop.Location = new System.Drawing.Point(532, 238);
+            this.checkBox_ontop.Name = "checkBox_ontop";
+            this.checkBox_ontop.Size = new System.Drawing.Size(96, 17);
+            this.checkBox_ontop.TabIndex = 8;
+            this.checkBox_ontop.Text = "Always on Top";
+            this.checkBox_ontop.UseVisualStyleBackColor = true;
+            this.checkBox_ontop.CheckedChanged += new System.EventHandler(this.checkBox_ontop_CheckedChanged);
             // 
             // label4
             // 
@@ -186,7 +234,7 @@ namespace QO_100_WB_Live_Tune
             this.label4.TabIndex = 1;
             this.label4.Text = "You can add multiple Minitioune Receiver UDP settings.\r\nClick on each \'band\' of t" +
     "he spectrum to control each receiver.\r\nThe numbers on the left correspond to the" +
-    " receiver.\r\nV0.9b 25/03/2020";
+    " receiver.\r\nV1.0b 27/03/2020";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // groupBox1
@@ -388,19 +436,41 @@ namespace QO_100_WB_Live_Tune
             // 
             this.Mode.Text = "Mode";
             // 
+            // button_close
+            // 
+            this.button_close.Location = new System.Drawing.Point(875, 3);
+            this.button_close.Name = "button_close";
+            this.button_close.Size = new System.Drawing.Size(43, 23);
+            this.button_close.TabIndex = 3;
+            this.button_close.Text = "Close";
+            this.button_close.UseVisualStyleBackColor = true;
+            this.button_close.Click += new System.EventHandler(this.button_close_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Connect";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 341);
+            this.ClientSize = new System.Drawing.Size(929, 328);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Multi Quick Tune 0.9b ";
+            this.Text = "QO-100 WB Multi Quick Tune 1.0b ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_opacity)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -440,8 +510,13 @@ namespace QO_100_WB_Live_Tune
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.PictureBox spectrum;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TrackBar trackBar_opacity;
+        private System.Windows.Forms.CheckBox checkBox_ontop;
+        private System.Windows.Forms.CheckBox checkBox_minimal;
+        private System.Windows.Forms.Button button_close;
+        private System.Windows.Forms.Button button1;
     }
 }
 

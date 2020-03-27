@@ -34,6 +34,7 @@ namespace QO_100_WB_Live_Tune
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Console.WriteLine(FormBorderStyle); 
             //Restore things here
             Properties.Settings.Default.Reload();
             foreach (String item in Properties.Settings.Default.ReceiverList)
@@ -46,6 +47,28 @@ namespace QO_100_WB_Live_Tune
                 
                
             }
+
+            if (Properties.Settings.Default.Opacity > 0) {
+                Opacity = Properties.Settings.Default.Opacity;
+                trackBar_opacity.Value = Convert.ToInt16(Opacity * 100.0);
+            }
+
+            if (Properties.Settings.Default.Minimal)
+            {
+                checkBox_minimal.Checked = Properties.Settings.Default.Minimal;
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                button_close.Visible = true;
+
+            }
+            else
+            {
+                checkBox_minimal.Checked = false;
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                button_close.Visible = false;
+            }
+
+             Location = Properties.Settings.Default.Location;
+
 
             //combo box defaults
             comboBox_rxsocket.SelectedIndex = 0;
@@ -111,6 +134,9 @@ namespace QO_100_WB_Live_Tune
                 Rxs.Add(RxList.Items[a].SubItems[0].Text + "," + RxList.Items[a].SubItems[1].Text + "," + RxList.Items[a].SubItems[2].Text + "," + RxList.Items[a].SubItems[3].Text + "," + RxList.Items[a].SubItems[4].Text + "," + RxList.Items[a].SubItems[5].Text + "," + RxList.Items[a].SubItems[6].Text);
             }
             Properties.Settings.Default.ReceiverList = Rxs;
+            Properties.Settings.Default.Opacity = Opacity;
+            Properties.Settings.Default.Minimal = checkBox_minimal.Checked;
+            Properties.Settings.Default.Location = Location;
             Properties.Settings.Default.Save();
         }
 
@@ -583,6 +609,68 @@ namespace QO_100_WB_Live_Tune
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox_ontop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ontop.Checked)
+            {
+                TopMost = true;
+            }
+            else
+            {
+                TopMost = false;
+            }
+        }
+
+        private void trackBar_opacity_Scroll(object sender, EventArgs e)
+        {
+            Opacity = ((double)trackBar_opacity.Value / 100.0);
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage2"])
+                Opacity = 1;
+            else
+                Opacity = ((double)trackBar_opacity.Value / 100.0);
+        }
+
+
+        private void checkBox_minimal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_minimal.Checked)
+            {
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                button_close.Visible = true;
+            }
+            else
+            {
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                button_close.Visible = false;
+            }
+            
+        }
+
+
+        //fix to allow drag when in 'minimal' mode
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+
+            base.WndProc(ref m);
+        }
+
+        private void button_close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
