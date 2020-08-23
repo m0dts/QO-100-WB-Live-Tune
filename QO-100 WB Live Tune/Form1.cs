@@ -176,7 +176,7 @@ namespace QO_100_WB_Live_Tune
         private void button1_Click(object sender, EventArgs e)
         {
             if (!connected) {
-                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft_m0dtslivetune");
+                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft", "fft_m0dtslivetune");
                 ws.OnMessage += (ss, ee) => NewData(sender, ee.RawData);
                 ws.OnOpen += (ss, ee) => { connected = true; button1.Text = "Disconnect"; };
                 ws.OnClose += (ss, ee) => { connected = false; button1.Text = "Connect"; };
