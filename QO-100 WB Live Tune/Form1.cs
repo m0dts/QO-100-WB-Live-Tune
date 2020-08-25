@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -16,15 +17,54 @@ namespace QO_100_WB_Live_Tune
     public partial class Form1 : Form
     {
 
+
+
+        private static readonly Object list_lock = new Object();
+        private WebSocket ws;       //websocket client
+
+        static int width = 922;     //web monitor uses 922 points, 6 padded?
+        static int height = 255;    //makes things easier
+        static int bandplan_height = 30;
+
+        static Bitmap bmp = new Bitmap(width, height + 20);
+        static Bitmap bmp2 = new Bitmap(width, bandplan_height);     //bandplan
+        Pen greenpen = new Pen(Color.FromArgb(200, 20, 200, 20));
+        Pen greypen = new Pen(Color.Gray, width: 1) { DashPattern = new[] { 10f, 10f } };
+        SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(128, Color.Gray));
+        SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(180, 150, 150, 255));
+
+        Graphics tmp = Graphics.FromImage(bmp);
+        Graphics tmp2 = Graphics.FromImage(bmp2);
+
+        UInt16[] fft_data;  //array of spectrum values
+        List<List<double>> signals = new List<List<double>>();  //list of signals found: 
+        bool connected = false;
+
+        //udp port stuff
+        UdpClient MT_Client = new UdpClient();
+        System.Net.IPEndPoint sending_end_point;
+
+        int[,] rx_blocks = new int[6, 3];
+
+        System.Timers.Timer timeout = new System.Timers.Timer();        //detect websocket timeout
+
+        double start_freq = 10490.5f;
+
+
+        XElement bandplan;
+        Rectangle[] channels;
+        IList<XElement> indexedbandplan;
+        string InfoText;
+        List<string> blocks = new List<string>();
+        
+
+
+
         public Form1()
         {
- 
             InitializeComponent();
-
             this.FormClosing += Form1_FormClosing;
             Load += new EventHandler(Form1_Load);
-
-            
         }
 
 
@@ -34,7 +74,6 @@ namespace QO_100_WB_Live_Tune
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Console.WriteLine(FormBorderStyle); 
             //Restore things here
             Properties.Settings.Default.Reload();
             foreach (String item in Properties.Settings.Default.ReceiverList)
@@ -83,10 +122,19 @@ namespace QO_100_WB_Live_Tune
             {
                 bandplan = XElement.Load(Path.GetDirectoryName(Application.ExecutablePath) + @"\bandplan.xml");         
                 drawspectrum_bandplan();
+                indexedbandplan = bandplan.Elements().ToList();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+
+            foreach (var channel in bandplan.Elements("channel"))
+            {
+                if (!blocks.Contains(channel.Element("block").Value))
+                {
+                    blocks.Add(channel.Element("block").Value);
+                }
             }
 
             CultureInfo.CurrentCulture = orig_culture;
@@ -95,6 +143,9 @@ namespace QO_100_WB_Live_Tune
 
 
             button1_Click(this,null);
+
+
+
 
 
         }
@@ -142,41 +193,14 @@ namespace QO_100_WB_Live_Tune
 
 
 
-        private static readonly Object list_lock = new Object();
-        private WebSocket ws;       //websocket client
+       
 
-        static int width = 922;     //web monitor uses 922 points, 6 padded?
-        static int height = 255;    //makes things easier
-
-        static Bitmap bmp = new Bitmap(width, height+15);
-        static Bitmap bmp2 = new Bitmap(width, 15);     //bandplan
-        Pen greenpen = new Pen(Color.FromArgb(200, 20, 200, 20));
-        Pen greypen = new Pen(Color.Gray, width: 1) { DashPattern = new[] { 10f, 10f } };
-        SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(128, Color.Gray));
-        SolidBrush bandplanBrush = new SolidBrush(Color.FromArgb(100, 150,150,255));
-
-        Graphics tmp = Graphics.FromImage(bmp);
-        Graphics tmp2 = Graphics.FromImage(bmp2);
-
-        UInt16[] fft_data;  //array of spectrum values
-        List<List<double>> signals = new List<List<double>>();  //list of signals found: 
-        bool connected = false;
-
-        //udp port stuff
-        UdpClient MT_Client = new UdpClient();
-        System.Net.IPEndPoint sending_end_point;
-
-        int[,] rx_blocks= new int[6,3];
-        XElement bandplan;
-        System.Timers.Timer timeout = new System.Timers.Timer();        //detect websocket timeout
-
-        double start_freq = 10490.5f;
 
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (!connected) {
-                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft", "fft_m0dtslivetune");
+                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft","fft_m0dtslivetune");
                 ws.OnMessage += (ss, ee) => NewData(sender, ee.RawData);
                 ws.OnOpen += (ss, ee) => { connected = true; button1.Text = "Disconnect"; };
                 ws.OnClose += (ss, ee) => { connected = false; button1.Text = "Connect"; };
@@ -216,6 +240,7 @@ namespace QO_100_WB_Live_Tune
 
             //draw the spectrum
             drawspectrum(fft_data,signals);
+           // Console.WriteLine(DateTime.Now);
 
         }
 
@@ -229,7 +254,23 @@ namespace QO_100_WB_Live_Tune
 
             
             int span = 9;
+            int count = 0;
+            List<string> blocks=new List<string>();
 
+            //count blocks ('layers' of bandplan)
+            foreach (var channel in bandplan.Elements("channel")) {
+                count++;
+                if (!blocks.Contains(channel.Element("block").Value))
+                {
+                    blocks.Add(channel.Element("block").Value);
+                }
+            }
+
+            channels = new Rectangle[count];
+
+            int n = 0;
+
+            //create rectangle blocks to display bandplan
             foreach (var channel in bandplan.Elements("channel"))
             {
                 int w = 0;
@@ -241,26 +282,28 @@ namespace QO_100_WB_Live_Tune
                 int pos = Convert.ToInt16((922.0 / span) * (freq - start_freq));
                 w = Convert.ToInt32(sr  / (span * 1000.0) * 922 * rolloff);
 
-                switch (channel.Element("sr").Value)
+                int split = bandplan_height / blocks.Count();
+                int b = blocks.Count();
+                foreach (string blk in blocks)
                 {
-                    case "2000":
-                        offset = 8;
-                        break;
-                    case "1000":
-                        offset = 0;
-                        break;
-                    case "333":
-                        offset = 8;
-                        break;
-                    case "125":
-                        offset = 0;
-                        break;
+                    if (channel.Element("block").Value == blk)
+                    {
+                        offset = b * split;
+                    }
+                    b--;
                 }
+                channels[n]=  new Rectangle(pos - (w / 2), offset-(split/2)-3, w, split-2);
+                n++;
 
-                tmp2.FillRectangles(bandplanBrush, new RectangleF[] { new System.Drawing.Rectangle(pos - (w / 2), offset, w, 3) });      //x,y,w,h
+               
             }
 
-          
+            //draw blocks
+            for(int i = 0; i < count; i++)
+            {
+                tmp2.FillRectangles(bandplanBrush, new RectangleF[] { channels[i] });      //x,y,w,h
+            }
+
         }
 
 
@@ -268,8 +311,9 @@ namespace QO_100_WB_Live_Tune
         {
             int receivers = RxList.Items.Count;
             tmp.Clear(Color.Black);     //clear canvas
-            tmp.DrawImage(bmp2, new Point(0, 255)); //bandplan
+            tmp.DrawImage(bmp2, new Point(0, spectrum.Height-bandplan_height)); //bandplan
 
+            int spectrum_h = spectrum.Height - bandplan_height;
             //draw lines to segment y axis determining where to click for each receiver
             if (receivers >= 1)
             {
@@ -277,17 +321,17 @@ namespace QO_100_WB_Live_Tune
                 int tyoffset = 0;
                 for (int i = 0; i < receivers; i++)
                 {
-                    y = 255 - ((255 / receivers) * i + 2);
-                    tyoffset= (255 / receivers) / 2+10;
+                    y = spectrum_h - ((spectrum_h / receivers) * i + 2);
+                    tyoffset= (spectrum_h / receivers) / 2+10;
                     if (i >0)
                     {
                         tmp.DrawLine(greypen, 0, y, 922, y);
                     }
-                    tmp.DrawString((receivers-(i)).ToString(), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), (255 - tyoffset-Convert.ToSingle((255 / receivers) * i + 1))));
+                    tmp.DrawString((receivers-(i)).ToString(), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), (spectrum_h - tyoffset-Convert.ToSingle((spectrum_h / receivers) * i + 1))));
                     if(rx_blocks[i, 0] >0)
                     {
                         //draw block showing signal selected
-                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), 255-y+1, rx_blocks[i, 1], (255 / receivers)-4) });
+                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), spectrum_h - y+1, rx_blocks[i, 1], (spectrum_h / receivers)-4) });
 
                     }
                 }
@@ -308,7 +352,7 @@ namespace QO_100_WB_Live_Tune
                     tmp.DrawString(sig[1].ToString("#.000") + " " + (sig[2]*1000).ToString("#Ks"), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(sig[0] - 50), (255 - Convert.ToSingle(sig[3] + 30))));
                 }
             }
-
+            tmp.DrawString(InfoText, new Font("Tahoma", 12), Brushes.Yellow, new PointF(50, 0));
             spectrum.Image = bmp;       //pass bitmap to gui picture frame
         }
 
@@ -420,6 +464,38 @@ namespace QO_100_WB_Live_Tune
                     }
                 }
             }
+        }
+
+       
+        
+
+        private void spectrum_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            //detect mouse over channel, tooltip info
+            int n = 0;
+            if (e.Y > (spectrum.Height - bandplan_height))
+            {
+                foreach (Rectangle ch in channels)
+                {
+                    if (e.X >= ch.Location.X & e.X <= ch.Location.X + ch.Width)
+                    {
+                        if (e.Y-(spectrum.Height-bandplan_height) >= ch.Location.Y - (ch.Height / 2)+3 & e.Y- (spectrum.Height - bandplan_height) <= ch.Location.Y + (ch.Height/2)+3)
+                        {
+                            InfoText = indexedbandplan[n].Element("name").Value +"\nDn: "+ indexedbandplan[n].Element("x-freq").Value + "\nUp: " + indexedbandplan[n].Element("s-freq").Value;
+                        }
+
+                    }
+                    n++;
+                }
+            }else
+            {
+                if( InfoText != "")
+                {
+                    InfoText = "";
+                }
+            }
+            
         }
 
         public float align_symbolrate(float width)
