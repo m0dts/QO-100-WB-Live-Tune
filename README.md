@@ -9,4 +9,5 @@ If you have multiple receivers the area of the spectrum plot is split up and all
 Various parts of the code come from the batc page javascriipt here: https://eshail.batc.org.uk/wb/
 
 A pre-compiled version is included in the releases tab.
+
 If you are running Windows 8.1 and get errors when the program starts you may need to upgrade the Dot Net framework, download V4.8 here: https://go.microsoft.com/fwlink/?LinkId=2088632
