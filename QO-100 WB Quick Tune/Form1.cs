@@ -161,7 +161,11 @@ namespace QO_100_WB_Quick_Tune
             combo_minsr.SelectedIndex = Properties.Settings.Default.scan_minsr ;
             if (RxList.Items.Count > 0)
             {
-                combo_rxs_scan.SelectedIndex = Properties.Settings.Default.scan_numrx;
+                if (Properties.Settings.Default.scan_numrx > -1)
+                {
+                    combo_rxs_scan.SelectedIndex = Properties.Settings.Default.scan_numrx;
+                }
+                
             }
             check_avoidbeacon.Checked = Properties.Settings.Default.avoidbeacon;
 
@@ -248,7 +252,11 @@ namespace QO_100_WB_Quick_Tune
                 }
                 
 
-                int sr = Convert.ToInt32(channel.Element("sr").Value.Replace(",", "."));
+                int sr = Convert.ToInt32(channel.Element("sr").Value);
+                if (!freq.ToString().Contains("."))         //detect whether ',' or '.' thousand separator!
+                {        
+                    sr = Convert.ToInt32(channel.Element("sr").Value.Replace(".", ","));
+                }
 
                 int pos = Convert.ToInt16((922.0 / span) * (freq - start_freq));
                 w = Convert.ToInt32(sr / (span * 1000.0) * 922 * rolloff);
@@ -849,6 +857,9 @@ namespace QO_100_WB_Quick_Tune
             {
                 combo_rxs_scan.Items.Add(n + 1);
             }
+            combo_rxs_scan.SelectedIndex = 0;
+            System.Threading.Thread.Sleep(100);
+            Console.WriteLine(combo_rxs_scan.SelectedIndex);
         }
 
         private void combo_minsr_SelectedIndexChanged(object sender, EventArgs e)
@@ -859,6 +870,7 @@ namespace QO_100_WB_Quick_Tune
         private void combo_rxs_scan_SelectedIndexChanged(object sender, EventArgs e)
         {
             int num = Convert.ToInt16(combo_rxs_scan.GetItemText(combo_rxs_scan.SelectedItem));
+            Console.WriteLine(combo_rxs_scan.SelectedIndex);
             num_rxs_to_scan = num;
             sigs.set_num_rx_scan(num);
         }
