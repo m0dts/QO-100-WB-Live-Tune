@@ -580,6 +580,8 @@ namespace QO_100_WB_Quick_Tune
             {
                 RxList.Items[RxList.SelectedIndices[0]].Remove();
             }
+            update_count();
+            sigs.set_num_rx(RxList.Items.Count);
         }
 
         private void label4_Click(object sender, EventArgs e)
