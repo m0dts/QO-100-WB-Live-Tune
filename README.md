@@ -1,4 +1,4 @@
-# QO-100-WB-Live-Tune
+# QO-100-WB-Quick-Tune
 
 This Windows C# application grabs the fft data from the batc Wideband Spectrum monitor page and allows the user to click on signals which automatically configures Minitioune to the required settings to receive the signal via udp control.
 
