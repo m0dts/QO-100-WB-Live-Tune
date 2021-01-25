@@ -200,7 +200,7 @@ namespace QO_100_WB_Live_Tune
         private void button1_Click(object sender, EventArgs e)
         {
             if (!connected) {
-                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft","fft_m0dtslivetune");
+                ws = new WebSocket("wss://eshail.batc.org.uk/wb/fft_m0dtslivetune");
                 ws.OnMessage += (ss, ee) => NewData(sender, ee.RawData);
                 ws.OnOpen += (ss, ee) => { connected = true; button1.Text = "Disconnect"; };
                 ws.OnClose += (ss, ee) => { connected = false; button1.Text = "Connect"; };
@@ -240,7 +240,7 @@ namespace QO_100_WB_Live_Tune
 
             //draw the spectrum
             drawspectrum(fft_data,signals);
-           // Console.WriteLine(DateTime.Now);
+            Console.WriteLine(DateTime.Now);
 
         }
 
@@ -313,7 +313,6 @@ namespace QO_100_WB_Live_Tune
             tmp.Clear(Color.Black);     //clear canvas
             tmp.DrawImage(bmp2, new Point(0, spectrum.Height-bandplan_height)); //bandplan
 
-            int spectrum_h = spectrum.Height - bandplan_height;
             //draw lines to segment y axis determining where to click for each receiver
             if (receivers >= 1)
             {
@@ -321,17 +320,17 @@ namespace QO_100_WB_Live_Tune
                 int tyoffset = 0;
                 for (int i = 0; i < receivers; i++)
                 {
-                    y = spectrum_h - ((spectrum_h / receivers) * i + 2);
-                    tyoffset= (spectrum_h / receivers) / 2+10;
+                    y = 255 - ((255 / receivers) * i + 2);
+                    tyoffset= (255 / receivers) / 2+10;
                     if (i >0)
                     {
                         tmp.DrawLine(greypen, 0, y, 922, y);
                     }
-                    tmp.DrawString((receivers-(i)).ToString(), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), (spectrum_h - tyoffset-Convert.ToSingle((spectrum_h / receivers) * i + 1))));
+                    tmp.DrawString((receivers-(i)).ToString(), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), (255 - tyoffset-Convert.ToSingle((255 / receivers) * i + 1))));
                     if(rx_blocks[i, 0] >0)
                     {
                         //draw block showing signal selected
-                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), spectrum_h - y+1, rx_blocks[i, 1], (spectrum_h / receivers)-4) });
+                        tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), 255-y+1, rx_blocks[i, 1], (255 / receivers)-4) });
 
                     }
                 }

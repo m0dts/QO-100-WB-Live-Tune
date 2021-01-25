@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QO_100_WB_Live_Tune.Properties {
+namespace QO_100_WB_Quick_Tune.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -108,6 +108,102 @@ namespace QO_100_WB_Live_Tune.Properties {
             }
             set {
                 this["Location"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int scan_dwell {
+            get {
+                return ((int)(this["scan_dwell"]));
+            }
+            set {
+                this["scan_dwell"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int scan_minsr {
+            get {
+                return ((int)(this["scan_minsr"]));
+            }
+            set {
+                this["scan_minsr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int scan_numrx {
+            get {
+                return ((int)(this["scan_numrx"]));
+            }
+            set {
+                this["scan_numrx"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("232.0.0.1")]
+        public string wh_ip {
+            get {
+                return ((string)(this["wh_ip"]));
+            }
+            set {
+                this["wh_ip"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9910")]
+        public string wh_port {
+            get {
+                return ((string)(this["wh_port"]));
+            }
+            set {
+                this["wh_port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9750000")]
+        public string wh_lo {
+            get {
+                return ((string)(this["wh_lo"]));
+            }
+            set {
+                this["wh_lo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool wh_scan_checked {
+            get {
+                return ((bool)(this["wh_scan_checked"]));
+            }
+            set {
+                this["wh_scan_checked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool avoidbeacon {
+            get {
+                return ((bool)(this["avoidbeacon"]));
+            }
+            set {
+                this["avoidbeacon"] = value;
             }
         }
     }

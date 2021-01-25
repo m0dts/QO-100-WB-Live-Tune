@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QO-100 WB Live Tune", "QO-100 WB Live Tune\QO-100 WB Live Tune.csproj", "{43D0930E-6D09-4D44-8345-1ABD2490A932}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QO-100 WB Quick Tune", "QO-100 WB Quick Tune\QO-100 WB Quick Tune.csproj", "{43D0930E-6D09-4D44-8345-1ABD2490A932}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

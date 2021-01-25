@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QO_100_WB_Live_Tune
+namespace QO_100_WB_Quick_Tune
 {
     static class Program
     {

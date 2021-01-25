@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QO_100_WB_Live_Tune.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QO_100_WB_Quick_Tune.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="lnb_offset" Type="System.String" Scope="User">
@@ -26,6 +26,30 @@
     </Setting>
     <Setting Name="Location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="scan_dwell" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="scan_minsr" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="scan_numrx" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="wh_ip" Type="System.String" Scope="User">
+      <Value Profile="(Default)">232.0.0.1</Value>
+    </Setting>
+    <Setting Name="wh_port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9910</Value>
+    </Setting>
+    <Setting Name="wh_lo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9750000</Value>
+    </Setting>
+    <Setting Name="wh_scan_checked" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="avoidbeacon" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
