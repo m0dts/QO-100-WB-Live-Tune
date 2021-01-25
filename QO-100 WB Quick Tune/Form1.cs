@@ -239,10 +239,15 @@ namespace QO_100_WB_Quick_Tune
                 int w = 0;
                 int offset = 0;
                 float rolloff = 1.35f;
-                string xval = channel.Element("x-freq").Value.Replace(".", ",");
-                decimal freq_dec;
-                var tempfreq = decimal.TryParse(channel.Element("x-freq").Value, out freq_dec);
-                float freq = Convert.ToSingle(freq_dec);
+                string xval = channel.Element("x-freq").Value;
+
+                float freq;
+                freq = Convert.ToSingle(xval);
+                if (!freq.ToString().Contains(".")){        //detect whether ',' or '.' thousand separator!
+                    freq = Convert.ToSingle(xval.Replace(".", ","));
+                }
+                
+
                 int sr = Convert.ToInt32(channel.Element("sr").Value.Replace(",", "."));
 
                 int pos = Convert.ToInt16((922.0 / span) * (freq - start_freq));
