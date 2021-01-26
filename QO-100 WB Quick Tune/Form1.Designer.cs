@@ -34,6 +34,7 @@ namespace QO_100_WB_Quick_Tune
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.error_label = new System.Windows.Forms.Label();
             this.combo_mode = new System.Windows.Forms.ComboBox();
             this.button_close = new System.Windows.Forms.Button();
             this.spectrum = new System.Windows.Forms.PictureBox();
@@ -52,6 +53,7 @@ namespace QO_100_WB_Quick_Tune
             this.trackBar_opacity = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.check_avoidbeacon = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.combo_rxs_scan = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@ namespace QO_100_WB_Quick_Tune
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer_wh = new System.Windows.Forms.Timer(this.components);
-            this.check_avoidbeacon = new System.Windows.Forms.CheckBox();
-            this.error_label = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
@@ -118,6 +118,16 @@ namespace QO_100_WB_Quick_Tune
             this.tabPage1.Size = new System.Drawing.Size(921, 313);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Display";
+            // 
+            // error_label
+            // 
+            this.error_label.AutoSize = true;
+            this.error_label.BackColor = System.Drawing.Color.Black;
+            this.error_label.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.error_label.Location = new System.Drawing.Point(327, 13);
+            this.error_label.Name = "error_label";
+            this.error_label.Size = new System.Drawing.Size(0, 13);
+            this.error_label.TabIndex = 5;
             // 
             // combo_mode
             // 
@@ -320,6 +330,18 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Auto Tune";
             // 
+            // check_avoidbeacon
+            // 
+            this.check_avoidbeacon.AutoSize = true;
+            this.check_avoidbeacon.Location = new System.Drawing.Point(6, 104);
+            this.check_avoidbeacon.Name = "check_avoidbeacon";
+            this.check_avoidbeacon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.check_avoidbeacon.Size = new System.Drawing.Size(93, 17);
+            this.check_avoidbeacon.TabIndex = 6;
+            this.check_avoidbeacon.Text = "Avoid Beacon";
+            this.check_avoidbeacon.UseVisualStyleBackColor = true;
+            this.check_avoidbeacon.CheckedChanged += new System.EventHandler(this.check_avoidbeacon_CheckedChanged);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -338,7 +360,7 @@ namespace QO_100_WB_Quick_Tune
             this.combo_rxs_scan.Name = "combo_rxs_scan";
             this.combo_rxs_scan.Size = new System.Drawing.Size(56, 21);
             this.combo_rxs_scan.TabIndex = 4;
-            this.combo_rxs_scan.Text = "1";
+            this.combo_rxs_scan.Text = "0";
             this.combo_rxs_scan.SelectedIndexChanged += new System.EventHandler(this.combo_rxs_scan_SelectedIndexChanged);
             // 
             // label1
@@ -541,28 +563,6 @@ namespace QO_100_WB_Quick_Tune
             this.timer_wh.Interval = 2000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
-            // check_avoidbeacon
-            // 
-            this.check_avoidbeacon.AutoSize = true;
-            this.check_avoidbeacon.Location = new System.Drawing.Point(6, 104);
-            this.check_avoidbeacon.Name = "check_avoidbeacon";
-            this.check_avoidbeacon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.check_avoidbeacon.Size = new System.Drawing.Size(93, 17);
-            this.check_avoidbeacon.TabIndex = 6;
-            this.check_avoidbeacon.Text = "Avoid Beacon";
-            this.check_avoidbeacon.UseVisualStyleBackColor = true;
-            this.check_avoidbeacon.CheckedChanged += new System.EventHandler(this.check_avoidbeacon_CheckedChanged);
-            // 
-            // error_label
-            // 
-            this.error_label.AutoSize = true;
-            this.error_label.BackColor = System.Drawing.Color.Black;
-            this.error_label.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.error_label.Location = new System.Drawing.Point(327, 13);
-            this.error_label.Name = "error_label";
-            this.error_label.Size = new System.Drawing.Size(0, 13);
-            this.error_label.TabIndex = 5;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -570,7 +570,7 @@ namespace QO_100_WB_Quick_Tune
             this.ClientSize = new System.Drawing.Size(929, 338);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.2b (Jan 2021) - @M0DTS";
+            this.Text = "QO-100 WB Quick Tune 1.21b (Jan 2021) - @M0DTS";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

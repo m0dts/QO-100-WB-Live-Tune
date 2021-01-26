@@ -819,31 +819,32 @@ namespace QO_100_WB_Quick_Tune
         private void button1_Click_2(object sender, EventArgs e)
         {
             //using (add)
-           // {
-
-                add.ShowDialog();
+            // {
+            add.rx_added = "";
+            add.ShowDialog();
                 
-                if (RxList.Items.Count < 4)
+                
+            if (RxList.Items.Count < 4)
+            {
+                if (add.rx_added == "Minitioune")
                 {
-                    if (add.rx_added == "Minitioune")
-                    {
 
-                        RxList.Items.Add(new ListViewItem(new String[] { add.get_ip().ToString(), add.get_port().ToString(), add.get_lo().ToString(), add.get_rxsocket(), add.get_lnbvolts(), add.get_lnb22khz(), add.get_dvbmode(), add.get_widescan(), add.get_lowsr(), "Minitioune", "-" }));
-                    }
-                    if (add.rx_added == "Ryde")
-                    {
-                        if (add.rydeband != "")
-                        {
-                            RxList.Items.Add(new ListViewItem(new String[] { add.get_ip().ToString(), add.get_port().ToString(), "-", "-", "-", "-", "-", "-", "-", "Ryde", add.get_rydeband() }));
-
-                        }
-
-                    }
+                    RxList.Items.Add(new ListViewItem(new String[] { add.get_ip().ToString(), add.get_port().ToString(), add.get_lo().ToString(), add.get_rxsocket(), add.get_lnbvolts(), add.get_lnb22khz(), add.get_dvbmode(), add.get_widescan(), add.get_lowsr(), "Minitioune", "-" }));
                 }
-                else
+                if (add.rx_added == "Ryde")
                 {
-                    MessageBox.Show("Only 4 receivers allowed at the moment...");
+                    if (add.rydeband != "")
+                    {
+                        RxList.Items.Add(new ListViewItem(new String[] { add.get_ip().ToString(), add.get_port().ToString(), "-", "-", "-", "-", "-", "-", "-", "Ryde", add.get_rydeband() }));
+
+                    }
+
                 }
+            }
+            else
+            {
+                MessageBox.Show("Only 4 receivers allowed at the moment...");
+            }
               
            // }
             update_count();
@@ -857,8 +858,11 @@ namespace QO_100_WB_Quick_Tune
             {
                 combo_rxs_scan.Items.Add(n + 1);
             }
-            combo_rxs_scan.SelectedIndex = 0;
-            System.Threading.Thread.Sleep(100);
+            if (RxList.Items.Count > 0)
+            {
+                combo_rxs_scan.SelectedIndex = 0;
+            }
+            
             Console.WriteLine(combo_rxs_scan.SelectedIndex);
         }
 
@@ -870,7 +874,7 @@ namespace QO_100_WB_Quick_Tune
         private void combo_rxs_scan_SelectedIndexChanged(object sender, EventArgs e)
         {
             int num = Convert.ToInt16(combo_rxs_scan.GetItemText(combo_rxs_scan.SelectedItem));
-            Console.WriteLine(combo_rxs_scan.SelectedIndex);
+            //Console.WriteLine(combo_rxs_scan.SelectedIndex);
             num_rxs_to_scan = num;
             sigs.set_num_rx_scan(num);
         }
