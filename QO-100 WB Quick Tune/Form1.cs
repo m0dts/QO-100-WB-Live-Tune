@@ -381,11 +381,21 @@ namespace QO_100_WB_Quick_Tune
                 {
                     int sr = 0;
                     int freq = Convert.ToInt32((10490.5 + (X / 922.0) * 9.0) * 1000.0);
+
+                    bool ontop = false;
+                    if (checkBox_ontop.Checked)
+                    {
+                        ontop = true;
+                        checkBox_ontop.Checked = false;
+                    }
+
                     using (SRForm edit = new SRForm(freq))      //open up the manual sr select form
                     {
                         edit.ShowDialog();
                         sr = edit.getsr();
                     }
+
+                    checkBox_ontop.Checked = ontop;
 
                     int rx;
                     rx = determine_rx(Y);   //find receiver by vertical position clicked 
@@ -818,12 +828,19 @@ namespace QO_100_WB_Quick_Tune
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            bool ontop = false;
+            if (checkBox_ontop.Checked)
+            {
+                ontop = true;
+                checkBox_ontop.Checked = false;
+            }
             //using (add)
             // {
             add.rx_added = "";
             add.ShowDialog();
-                
-                
+            checkBox_ontop.Checked = ontop;
+
+
             if (RxList.Items.Count < 4)
             {
                 if (add.rx_added == "Minitioune")

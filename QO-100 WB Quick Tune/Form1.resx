@@ -132,7 +132,7 @@ Auto Tune (timed) - Automatically tunes to the next signal after the defined dwe
 You can specify the number of receivers to scan, this will be starting from the first in the list.
 You can also choose to ignore the Beacon.
 
-New Features V1.2b Jan 2021:
+New Features:
 Auto Tune
 Ryde Control
 WInter Hill scan output - All detected signals sent every 2 seconds.</value>
