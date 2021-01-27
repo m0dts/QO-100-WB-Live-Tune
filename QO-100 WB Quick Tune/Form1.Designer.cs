@@ -570,7 +570,7 @@ namespace QO_100_WB_Quick_Tune
             this.ClientSize = new System.Drawing.Size(929, 338);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.21b (Jan 2021) - @M0DTS";
+            this.Text = "QO-100 WB Quick Tune 1.22b (Jan 2021) - @M0DTS";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
