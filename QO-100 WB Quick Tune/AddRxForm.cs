@@ -532,15 +532,16 @@ namespace QO_100_WB_Quick_Tune
             bool err = false;
             byte[] reply_array = new byte[1024];
 
-            if (ryde_ip.Text.Split('.')[0] == "192")        //local net
+            if (Convert.ToInt16(ryde_ip.Text.Split('.')[0]) < 210)        //IP start above 209 not allowed
             {
                 IPAddress ip = IPAddress.Parse(ryde_ip.Text);
                 int port = Convert.ToInt32(ryde_port.Text);
-
+                
                 if (tcpclnt.ConnectAsync(ip, port).Wait(TimeSpan.FromSeconds(1)))
                 {
                     Stream stm = tcpclnt.GetStream();
-                    stm.ReadTimeout = 1000;
+                    stm.ReadTimeout = 2000;
+                    stm.WriteTimeout = 2000;
 
                     JObject jobj = JObject.Parse("{'request':'getBands'}");
                     string json = JsonConvert.SerializeObject(jobj);
