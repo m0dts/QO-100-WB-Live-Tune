@@ -23,12 +23,14 @@ namespace QO_100_WB_Quick_Tune
         private Label label2;
         private Label label3;
         private Button button1;
-
+        private Button button12;
         int freq = 0;
+
         public SRForm(int _freq)
         {
             freq = _freq;
             InitializeComponent();
+            label2.Text = freq.ToString();
             
         }
 
@@ -48,12 +50,13 @@ namespace QO_100_WB_Quick_Tune
             this.button11 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(16, 37);
+            this.button1.Location = new System.Drawing.Point(71, 37);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 24);
             this.button1.TabIndex = 0;
@@ -65,7 +68,7 @@ namespace QO_100_WB_Quick_Tune
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(70, 37);
+            this.button2.Location = new System.Drawing.Point(125, 37);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(48, 24);
             this.button2.TabIndex = 1;
@@ -101,7 +104,7 @@ namespace QO_100_WB_Quick_Tune
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(16, 97);
+            this.button5.Location = new System.Drawing.Point(124, 67);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(48, 24);
             this.button5.TabIndex = 4;
@@ -113,7 +116,7 @@ namespace QO_100_WB_Quick_Tune
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(70, 97);
+            this.button6.Location = new System.Drawing.Point(17, 97);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(48, 24);
             this.button6.TabIndex = 5;
@@ -125,7 +128,7 @@ namespace QO_100_WB_Quick_Tune
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(16, 127);
+            this.button7.Location = new System.Drawing.Point(70, 97);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(48, 24);
             this.button7.TabIndex = 6;
@@ -137,7 +140,7 @@ namespace QO_100_WB_Quick_Tune
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(70, 127);
+            this.button8.Location = new System.Drawing.Point(124, 97);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(48, 24);
             this.button8.TabIndex = 7;
@@ -151,7 +154,7 @@ namespace QO_100_WB_Quick_Tune
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Location = new System.Drawing.Point(37, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 20);
             this.label1.TabIndex = 1;
@@ -160,7 +163,7 @@ namespace QO_100_WB_Quick_Tune
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(16, 157);
+            this.button9.Location = new System.Drawing.Point(17, 127);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(48, 24);
             this.button9.TabIndex = 8;
@@ -172,7 +175,7 @@ namespace QO_100_WB_Quick_Tune
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(70, 157);
+            this.button10.Location = new System.Drawing.Point(71, 127);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(48, 24);
             this.button10.TabIndex = 9;
@@ -184,7 +187,7 @@ namespace QO_100_WB_Quick_Tune
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button11.Location = new System.Drawing.Point(99, 8);
+            this.button11.Location = new System.Drawing.Point(145, 8);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(27, 23);
             this.button11.TabIndex = 10;
@@ -197,28 +200,41 @@ namespace QO_100_WB_Quick_Tune
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(45, 184);
+            this.label2.Location = new System.Drawing.Point(70, 164);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 20);
+            this.label2.Size = new System.Drawing.Size(18, 20);
             this.label2.TabIndex = 11;
-            this.label2.Text = freq.ToString();
+            this.label2.Text = "0";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(12, 184);
+            this.label3.Location = new System.Drawing.Point(27, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 20);
             this.label3.TabIndex = 12;
             this.label3.Text = "Frq:";
             // 
+            // button12
+            // 
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.Location = new System.Drawing.Point(17, 37);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(48, 24);
+            this.button12.TabIndex = 13;
+            this.button12.TabStop = false;
+            this.button12.Text = "25";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // SRForm
             // 
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(138, 211);
+            this.ClientSize = new System.Drawing.Size(187, 201);
             this.ControlBox = false;
+            this.Controls.Add(this.button12);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button11);
@@ -313,6 +329,12 @@ namespace QO_100_WB_Quick_Tune
         private void button11_Click(object sender, EventArgs e)
         {
             SR = 0;
+            this.Close();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            SR = 25;
             this.Close();
         }
     }
