@@ -193,7 +193,7 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox4.Size = new System.Drawing.Size(183, 133);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "WinterHill";
+            this.groupBox4.Text = "Scan Output";
             // 
             // wh_lo
             // 
@@ -234,9 +234,9 @@ namespace QO_100_WB_Quick_Tune
             this.checkBox_wh_scan.AutoSize = true;
             this.checkBox_wh_scan.Location = new System.Drawing.Point(16, 100);
             this.checkBox_wh_scan.Name = "checkBox_wh_scan";
-            this.checkBox_wh_scan.Size = new System.Drawing.Size(113, 17);
+            this.checkBox_wh_scan.Size = new System.Drawing.Size(59, 17);
             this.checkBox_wh_scan.TabIndex = 0;
-            this.checkBox_wh_scan.Text = "Enable Scan Data";
+            this.checkBox_wh_scan.Text = "Enable";
             this.checkBox_wh_scan.UseVisualStyleBackColor = true;
             this.checkBox_wh_scan.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -560,7 +560,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             // timer_wh
             // 
-            this.timer_wh.Interval = 2000;
+            this.timer_wh.Interval = 1000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
             // Form1
@@ -570,7 +570,7 @@ namespace QO_100_WB_Quick_Tune
             this.ClientSize = new System.Drawing.Size(929, 338);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.22b (Jan 2021) - @M0DTS";
+            this.Text = "QO-100 WB Quick Tune 1.23b (May 2021) - @M0DTS";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

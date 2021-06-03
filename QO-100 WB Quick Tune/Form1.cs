@@ -16,7 +16,8 @@ namespace QO_100_WB_Quick_Tune
     public partial class Form1 : Form
     {
 
-
+        //github version info
+        //https://api.github.com/repos/m0dts/QO-100-WB-Live-Tune/releases/latest
 
         private static readonly Object list_lock = new Object();
         // private WebSocket ws;       //websocket client
@@ -41,7 +42,7 @@ namespace QO_100_WB_Quick_Tune
         UdpClient WH_Client = new UdpClient();
         System.Net.IPEndPoint sending_end_point;
 
-        int[,] rx_blocks = new int[6, 3];
+        int[,] rx_blocks = new int[8, 3];
 
         System.Timers.Timer timeout = new System.Timers.Timer();        //detect websocket timeout
 
@@ -175,6 +176,7 @@ namespace QO_100_WB_Quick_Tune
             wh_port.Text = Properties.Settings.Default.wh_port;
             wh_lo.Text = Properties.Settings.Default.wh_lo;
             checkBox_wh_scan.Checked = Properties.Settings.Default.wh_scan_checked;
+            combo_mode.SelectedIndex = Properties.Settings.Default.mode;
 
 
             sigs.set_num_rx_scan(num_rxs_to_scan);
@@ -201,6 +203,7 @@ namespace QO_100_WB_Quick_Tune
             Properties.Settings.Default.scan_minsr = combo_minsr.SelectedIndex;
             Properties.Settings.Default.scan_numrx = combo_rxs_scan.SelectedIndex;
             Properties.Settings.Default.avoidbeacon = check_avoidbeacon.Checked;
+            Properties.Settings.Default.mode = combo_mode.SelectedIndex;
 
             //winterhill
             Properties.Settings.Default.wh_ip = wh_ip.Text;
@@ -208,6 +211,7 @@ namespace QO_100_WB_Quick_Tune
             Properties.Settings.Default.wh_lo = wh_lo.Text;
             Properties.Settings.Default.wh_scan_checked = checkBox_wh_scan.Checked;
 
+            
             //finally save
             Properties.Settings.Default.Save();
         }
@@ -315,7 +319,7 @@ namespace QO_100_WB_Quick_Tune
                 int tyoffset = 0;
                 for (int i = 0; i < receivers; i++)
                 {
-                    y = spectrum_h - ((spectrum_h / receivers) * i + 2);
+                    y = spectrum_h - ((spectrum_h / receivers) * i + 3);
                     tyoffset = (spectrum_h / receivers) / 2 + 10;
                     if (i > 0)
                     {
@@ -405,7 +409,7 @@ namespace QO_100_WB_Quick_Tune
                     sigs.set_tuned(new signal.Sig(0,0,X,0,freq,(float)sr/1000), rx);
 
                     //send tune commands
-                    if (RxList.Items[rx].SubItems[9].Text == "Minitioune")
+                    if (RxList.Items[rx].SubItems[9].Text == "Minitioune" | RxList.Items[rx].SubItems[9].Text == "WinterHill")
                     {
                         tune_minitioune(rx, freq, sr);
                     }
@@ -440,7 +444,7 @@ namespace QO_100_WB_Quick_Tune
                                 int freq = Convert.ToInt32((s.frequency) * 1000);
                                 int sr = Convert.ToInt32((s.sr * 1000.0));
                                     
-                                if (RxList.Items[rx].SubItems[9].Text == "Minitioune")
+                                if (RxList.Items[rx].SubItems[9].Text == "Minitioune" | RxList.Items[rx].SubItems[9].Text == "WinterHill")
                                 {
                                     tune_minitioune(rx,freq,sr);
                                 }
@@ -477,8 +481,10 @@ namespace QO_100_WB_Quick_Tune
         private int determine_rx(int pos)
         {
             int rx = 0;
-
-            switch (RxList.Items.Count)
+            int div = 255 / RxList.Items.Count;
+            rx = pos / div;
+            Console.WriteLine(rx);
+        /*    switch (RxList.Items.Count)
             {
                 case 1:
                     //use full v scale for selecting which Rx
@@ -552,6 +558,7 @@ namespace QO_100_WB_Quick_Tune
                     break;
 
             }
+            */
             return rx;
         }
 
@@ -687,6 +694,7 @@ namespace QO_100_WB_Quick_Tune
               //  Console.WriteLine(ret.Item1.frequency);
                 if (ret.Item1.frequency > 0)      //above 0 is a change in signal
                 {
+                    System.Threading.Thread.Sleep(100);
                     select_signal(ret.Item1.fft_centre, ret.Item2, "normal", n+1);
                     sigs.set_tuned(ret.Item1, n);
                     rx_blocks[n, 0] = Convert.ToInt16(ret.Item1.fft_centre);
@@ -841,7 +849,7 @@ namespace QO_100_WB_Quick_Tune
             checkBox_ontop.Checked = ontop;
 
 
-            if (RxList.Items.Count < 4)
+            if (RxList.Items.Count < 8)
             {
                 if (add.rx_added == "Minitioune")
                 {
@@ -857,10 +865,15 @@ namespace QO_100_WB_Quick_Tune
                     }
 
                 }
+                if (add.rx_added == "WinterHill")
+                {
+
+                    RxList.Items.Add(new ListViewItem(new String[] { add.get_ip().ToString(), add.get_port().ToString(), add.get_lo().ToString(), add.get_rxsocket(), add.get_lnbvolts(), add.get_lnb22khz(), add.get_dvbmode(), add.get_widescan(), add.get_lowsr(), "WinterHill", "-" }));
+                }
             }
             else
             {
-                MessageBox.Show("Only 4 receivers allowed at the moment...");
+                MessageBox.Show("Only 8 receivers allowed");
             }
               
            // }
@@ -894,6 +907,14 @@ namespace QO_100_WB_Quick_Tune
             //Console.WriteLine(combo_rxs_scan.SelectedIndex);
             num_rxs_to_scan = num;
             sigs.set_num_rx_scan(num);
+            for(int i = num; i < 8; i++)
+            {
+                sigs.clear(i);
+                rx_blocks[i, 0] = 0;
+                rx_blocks[i, 1] = 0;
+                rx_blocks[i, 2] = 0;
+            }
+            
         }
 
 

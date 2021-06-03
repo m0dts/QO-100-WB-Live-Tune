@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label4.Text" xml:space="preserve">
-    <value>QO-100 WB Quick Tune V1.22b (Jan 2021)
+    <value>QO-100 WB Quick Tune V1.23b (May 2021)
 
 Main Operation:
-Add up to 4 receivers to the Rx List, any combination of Minitioune/Ryde should work.
+Add up to 8 receivers to the Rx List, any combination of Minitioune/Ryde should work.
 Click on each horizontal 'band' on the spectrum to control each receiver.
 The numbers on the left correspond to the receiver. 
 Right click spectrum for custom frequency set without signal.
@@ -132,10 +132,11 @@ Auto Tune (timed) - Automatically tunes to the next signal after the defined dwe
 You can specify the number of receivers to scan, this will be starting from the first in the list.
 You can also choose to ignore the Beacon.
 
-New Features:
-Auto Tune
-Ryde Control
-WInter Hill scan output - All detected signals sent every 2 seconds.</value>
+New Features 1.23b:
+Now upto 8 receivers
+Remember Tune Mode
+
+</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

@@ -56,10 +56,10 @@ namespace QO_100_WB_Quick_Tune
 
         bool avoid_beacon = false;
 
-        private Sig[] last_sig = new Sig[4];             //last tune signal - detail
-        private Sig[] next_sig = new Sig[4];             //last tune signal - detail
+        private Sig[] last_sig = new Sig[8];             //last tune signal - detail
+        private Sig[] next_sig = new Sig[8];             //last tune signal - detail
 
-        private DateTime[] last_tuned_time = new DateTime[4];   //time the last signal was tuned
+        private DateTime[] last_tuned_time = new DateTime[8];   //time the last signal was tuned
 
         public void set_avoidbeacon(bool b)
         {
@@ -83,6 +83,11 @@ namespace QO_100_WB_Quick_Tune
         public void set_num_rx_scan(int _num_rx_scan)
         {
             num_rx_scan = _num_rx_scan;
+        }
+
+        public void clear(int rx)
+        {
+            last_sig[rx] = new Sig();
         }
 
 
@@ -146,7 +151,7 @@ namespace QO_100_WB_Quick_Tune
                 if (change )
                 {
                     last_sig[rx]=next_sig[rx];
-                    last_tuned_time[rx] = DateTime.Now;
+                    last_tuned_time[rx] = DateTime.Now.AddSeconds(rx);
                     return new Tuple<Sig, int>(last_sig[rx], rx);
                 }
                 else
@@ -280,7 +285,7 @@ namespace QO_100_WB_Quick_Tune
                 int j;
 
                 int noise_level = 11000;
-                int signal_threshold = 18000;
+                int signal_threshold = 16000;
 
                 Boolean in_signal = false;
                 int start_signal = 0;
