@@ -61,6 +61,8 @@ namespace QO_100_WB_Quick_Tune
         int num_rxs_to_scan = 1;
         string rydebandinfo = "";
 
+        bool comma_sep = false;
+
 
         public Form1()
         {
@@ -77,7 +79,14 @@ namespace QO_100_WB_Quick_Tune
         private void Form1_Load(object sender, EventArgs e)
         {
 
-
+            try
+            {
+                Convert.ToSingle("0.5");
+            }
+            catch
+            {
+                comma_sep = true;
+            }
 
             //Restore things here
             Properties.Settings.Default.Reload();
@@ -181,6 +190,8 @@ namespace QO_100_WB_Quick_Tune
 
             sigs.set_num_rx_scan(num_rxs_to_scan);
             sigs.set_num_rx(RxList.Items.Count);
+
+
         }
 
 
@@ -250,17 +261,21 @@ namespace QO_100_WB_Quick_Tune
                 string xval = channel.Element("x-freq").Value;
 
                 float freq;
-                freq = Convert.ToSingle(xval);
-                if (!freq.ToString().Contains(".")){        //detect whether ',' or '.' thousand separator!
+                int sr;
+                
+                if (comma_sep){        //detect whether ',' or '.' thousand separator!
                     freq = Convert.ToSingle(xval.Replace(".", ","));
+                    sr = Convert.ToInt32(channel.Element("sr").Value.Replace(".", ","));
+                }
+                else
+                {
+                    freq = Convert.ToSingle(xval);
+                    sr = Convert.ToInt32(channel.Element("sr").Value);
                 }
                 
 
-                int sr = Convert.ToInt32(channel.Element("sr").Value);
-                if (!freq.ToString().Contains("."))         //detect whether ',' or '.' thousand separator!
-                {        
-                    sr = Convert.ToInt32(channel.Element("sr").Value.Replace(".", ","));
-                }
+                
+              
 
                 int pos = Convert.ToInt16((922.0 / span) * (freq - start_freq));
                 w = Convert.ToInt32(sr / (span * 1000.0) * 922 * rolloff);
@@ -690,7 +705,16 @@ namespace QO_100_WB_Quick_Tune
         {
             for(int n = 0; n < num_rxs_to_scan; n++) //RxList.Items.Count
             {
-                Tuple<signal.Sig, int> ret = sigs.tune(combo_mode.SelectedIndex, Convert.ToInt16(Convert.ToSingle(combo_WaitTime.Text) * 60),n);
+                float time;
+                if (comma_sep){
+                    time = Convert.ToSingle(combo_WaitTime.Text.Replace(".",","));
+                }
+                else
+                {
+                    time = Convert.ToSingle(combo_WaitTime.Text);
+                }
+                
+                Tuple<signal.Sig, int> ret = sigs.tune(combo_mode.SelectedIndex, Convert.ToInt16(time * 60),n);
               //  Console.WriteLine(ret.Item1.frequency);
                 if (ret.Item1.frequency > 0)      //above 0 is a change in signal
                 {
