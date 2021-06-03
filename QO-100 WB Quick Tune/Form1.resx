@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label4.Text" xml:space="preserve">
-    <value>QO-100 WB Quick Tune V1.24b (June 2021)
+    <value>QO-100 WB Quick Tune V1.25b (June 2021)
 
 Main Operation:
 Add up to 8 receivers to the Rx List, any combination of Minitioune/Ryde should work.
