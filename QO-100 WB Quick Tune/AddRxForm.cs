@@ -40,6 +40,29 @@ namespace QO_100_WB_Quick_Tune
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.WInterHill = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.wh_ip = new System.Windows.Forms.TextBox();
+            this.wh_lnb_offset = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.wh_port = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.wh_22KHz = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.wh_lnbvolts = new System.Windows.Forms.ComboBox();
+            this.wh_rxsocket = new System.Windows.Forms.ComboBox();
+            this.Ryde = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.ryde_add = new System.Windows.Forms.Button();
+            this.ryde_band = new System.Windows.Forms.ComboBox();
+            this.ryde_label_band = new System.Windows.Forms.Label();
+            this.ryde_ip = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.ryde_port = new System.Windows.Forms.TextBox();
             this.Minitioune = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.mt_ip = new System.Windows.Forms.TextBox();
@@ -60,33 +83,10 @@ namespace QO_100_WB_Quick_Tune
             this.label5 = new System.Windows.Forms.Label();
             this.mt_lnbvolts = new System.Windows.Forms.ComboBox();
             this.mt_rxsocket = new System.Windows.Forms.ComboBox();
-            this.Ryde = new System.Windows.Forms.TabPage();
-            this.label15 = new System.Windows.Forms.Label();
-            this.ryde_add = new System.Windows.Forms.Button();
-            this.ryde_band = new System.Windows.Forms.ComboBox();
-            this.ryde_label_band = new System.Windows.Forms.Label();
-            this.ryde_ip = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.ryde_port = new System.Windows.Forms.TextBox();
-            this.WInterHill = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.wh_ip = new System.Windows.Forms.TextBox();
-            this.wh_lnb_offset = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.wh_port = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.wh_22KHz = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.wh_lnbvolts = new System.Windows.Forms.ComboBox();
-            this.wh_rxsocket = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
-            this.Minitioune.SuspendLayout();
-            this.Ryde.SuspendLayout();
             this.WInterHill.SuspendLayout();
+            this.Ryde.SuspendLayout();
+            this.Minitioune.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -111,6 +111,251 @@ namespace QO_100_WB_Quick_Tune
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(183, 311);
             this.tabControl1.TabIndex = 40;
+            // 
+            // WInterHill
+            // 
+            this.WInterHill.Controls.Add(this.button1);
+            this.WInterHill.Controls.Add(this.wh_ip);
+            this.WInterHill.Controls.Add(this.wh_lnb_offset);
+            this.WInterHill.Controls.Add(this.label12);
+            this.WInterHill.Controls.Add(this.label14);
+            this.WInterHill.Controls.Add(this.label16);
+            this.WInterHill.Controls.Add(this.wh_port);
+            this.WInterHill.Controls.Add(this.label20);
+            this.WInterHill.Controls.Add(this.wh_22KHz);
+            this.WInterHill.Controls.Add(this.label21);
+            this.WInterHill.Controls.Add(this.label22);
+            this.WInterHill.Controls.Add(this.wh_lnbvolts);
+            this.WInterHill.Controls.Add(this.wh_rxsocket);
+            this.WInterHill.Location = new System.Drawing.Point(4, 22);
+            this.WInterHill.Name = "WInterHill";
+            this.WInterHill.Padding = new System.Windows.Forms.Padding(3);
+            this.WInterHill.Size = new System.Drawing.Size(175, 285);
+            this.WInterHill.TabIndex = 2;
+            this.WInterHill.Text = "WinterHill";
+            this.WInterHill.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 259);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 23);
+            this.button1.TabIndex = 91;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // wh_ip
+            // 
+            this.wh_ip.Location = new System.Drawing.Point(69, 6);
+            this.wh_ip.Name = "wh_ip";
+            this.wh_ip.Size = new System.Drawing.Size(91, 20);
+            this.wh_ip.TabIndex = 85;
+            this.wh_ip.Text = "192.168.1.45";
+            // 
+            // wh_lnb_offset
+            // 
+            this.wh_lnb_offset.Location = new System.Drawing.Point(69, 61);
+            this.wh_lnb_offset.Name = "wh_lnb_offset";
+            this.wh_lnb_offset.Size = new System.Drawing.Size(66, 20);
+            this.wh_lnb_offset.TabIndex = 89;
+            this.wh_lnb_offset.Text = "9750000";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(5, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 13);
+            this.label12.TabIndex = 87;
+            this.label12.Text = "IP Address";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(4, 64);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 13);
+            this.label14.TabIndex = 90;
+            this.label14.Text = "LNB Offset";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(5, 38);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(26, 13);
+            this.label16.TabIndex = 88;
+            this.label16.Text = "Port";
+            // 
+            // wh_port
+            // 
+            this.wh_port.Location = new System.Drawing.Point(69, 35);
+            this.wh_port.Name = "wh_port";
+            this.wh_port.Size = new System.Drawing.Size(39, 20);
+            this.wh_port.TabIndex = 86;
+            this.wh_port.Text = "9921";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(4, 145);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(63, 13);
+            this.label20.TabIndex = 78;
+            this.label20.Text = "LNB 22KHz";
+            // 
+            // wh_22KHz
+            // 
+            this.wh_22KHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.wh_22KHz.FormattingEnabled = true;
+            this.wh_22KHz.Items.AddRange(new object[] {
+            "Off",
+            "On"});
+            this.wh_22KHz.Location = new System.Drawing.Point(69, 142);
+            this.wh_22KHz.MaxDropDownItems = 3;
+            this.wh_22KHz.Name = "wh_22KHz";
+            this.wh_22KHz.Size = new System.Drawing.Size(66, 21);
+            this.wh_22KHz.TabIndex = 77;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(4, 117);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(54, 13);
+            this.label21.TabIndex = 76;
+            this.label21.Text = "LNB Volts";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(4, 90);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(57, 13);
+            this.label22.TabIndex = 75;
+            this.label22.Text = "Rx Socket";
+            // 
+            // wh_lnbvolts
+            // 
+            this.wh_lnbvolts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.wh_lnbvolts.FormattingEnabled = true;
+            this.wh_lnbvolts.Items.AddRange(new object[] {
+            "0",
+            "13",
+            "18"});
+            this.wh_lnbvolts.Location = new System.Drawing.Point(69, 114);
+            this.wh_lnbvolts.MaxDropDownItems = 3;
+            this.wh_lnbvolts.Name = "wh_lnbvolts";
+            this.wh_lnbvolts.Size = new System.Drawing.Size(66, 21);
+            this.wh_lnbvolts.TabIndex = 74;
+            // 
+            // wh_rxsocket
+            // 
+            this.wh_rxsocket.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.wh_rxsocket.FormattingEnabled = true;
+            this.wh_rxsocket.Items.AddRange(new object[] {
+            "A",
+            "B"});
+            this.wh_rxsocket.Location = new System.Drawing.Point(69, 87);
+            this.wh_rxsocket.MaxDropDownItems = 2;
+            this.wh_rxsocket.Name = "wh_rxsocket";
+            this.wh_rxsocket.Size = new System.Drawing.Size(66, 21);
+            this.wh_rxsocket.TabIndex = 73;
+            // 
+            // Ryde
+            // 
+            this.Ryde.Controls.Add(this.label15);
+            this.Ryde.Controls.Add(this.ryde_add);
+            this.Ryde.Controls.Add(this.ryde_band);
+            this.Ryde.Controls.Add(this.ryde_label_band);
+            this.Ryde.Controls.Add(this.ryde_ip);
+            this.Ryde.Controls.Add(this.label9);
+            this.Ryde.Controls.Add(this.label13);
+            this.Ryde.Controls.Add(this.ryde_port);
+            this.Ryde.Location = new System.Drawing.Point(4, 22);
+            this.Ryde.Name = "Ryde";
+            this.Ryde.Padding = new System.Windows.Forms.Padding(3);
+            this.Ryde.Size = new System.Drawing.Size(175, 285);
+            this.Ryde.TabIndex = 1;
+            this.Ryde.Text = "Ryde";
+            this.Ryde.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 122);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(162, 78);
+            this.label15.TabIndex = 72;
+            this.label15.Text = "Specify IP and Port of Ryde \r\nReceiver.\r\nClick the select band dropdown, \r\nit wil" +
+    "l be populated if the Ryde\r\nresponds.\r\nChoose QO-100 then press Add.";
+            // 
+            // ryde_add
+            // 
+            this.ryde_add.Enabled = false;
+            this.ryde_add.Location = new System.Drawing.Point(3, 259);
+            this.ryde_add.Name = "ryde_add";
+            this.ryde_add.Size = new System.Drawing.Size(169, 23);
+            this.ryde_add.TabIndex = 71;
+            this.ryde_add.Text = "Add";
+            this.ryde_add.UseVisualStyleBackColor = true;
+            this.ryde_add.Click += new System.EventHandler(this.ryde_add_Click);
+            // 
+            // ryde_band
+            // 
+            this.ryde_band.FormattingEnabled = true;
+            this.ryde_band.Location = new System.Drawing.Point(70, 74);
+            this.ryde_band.MaxDropDownItems = 2;
+            this.ryde_band.Name = "ryde_band";
+            this.ryde_band.Size = new System.Drawing.Size(91, 21);
+            this.ryde_band.TabIndex = 70;
+            this.ryde_band.Text = "Click Here";
+            this.ryde_band.SelectedIndexChanged += new System.EventHandler(this.ryde_band_SelectedIndexChanged);
+            this.ryde_band.Click += new System.EventHandler(this.ryde_band_Click);
+            // 
+            // ryde_label_band
+            // 
+            this.ryde_label_band.AutoSize = true;
+            this.ryde_label_band.Location = new System.Drawing.Point(5, 77);
+            this.ryde_label_band.Name = "ryde_label_band";
+            this.ryde_label_band.Size = new System.Drawing.Size(65, 13);
+            this.ryde_label_band.TabIndex = 69;
+            this.ryde_label_band.Text = "Select Band";
+            // 
+            // ryde_ip
+            // 
+            this.ryde_ip.Location = new System.Drawing.Point(70, 19);
+            this.ryde_ip.Name = "ryde_ip";
+            this.ryde_ip.Size = new System.Drawing.Size(91, 20);
+            this.ryde_ip.TabIndex = 62;
+            this.ryde_ip.Text = "192.168.1.43";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 13);
+            this.label9.TabIndex = 64;
+            this.label9.Text = "IP Address";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 51);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(26, 13);
+            this.label13.TabIndex = 65;
+            this.label13.Text = "Port";
+            // 
+            // ryde_port
+            // 
+            this.ryde_port.Location = new System.Drawing.Point(70, 48);
+            this.ryde_port.Name = "ryde_port";
+            this.ryde_port.Size = new System.Drawing.Size(39, 20);
+            this.ryde_port.TabIndex = 63;
+            this.ryde_port.Text = "8765";
             // 
             // Minitioune
             // 
@@ -337,251 +582,6 @@ namespace QO_100_WB_Quick_Tune
             this.mt_rxsocket.Size = new System.Drawing.Size(66, 21);
             this.mt_rxsocket.TabIndex = 40;
             // 
-            // Ryde
-            // 
-            this.Ryde.Controls.Add(this.label15);
-            this.Ryde.Controls.Add(this.ryde_add);
-            this.Ryde.Controls.Add(this.ryde_band);
-            this.Ryde.Controls.Add(this.ryde_label_band);
-            this.Ryde.Controls.Add(this.ryde_ip);
-            this.Ryde.Controls.Add(this.label9);
-            this.Ryde.Controls.Add(this.label13);
-            this.Ryde.Controls.Add(this.ryde_port);
-            this.Ryde.Location = new System.Drawing.Point(4, 22);
-            this.Ryde.Name = "Ryde";
-            this.Ryde.Padding = new System.Windows.Forms.Padding(3);
-            this.Ryde.Size = new System.Drawing.Size(175, 285);
-            this.Ryde.TabIndex = 1;
-            this.Ryde.Text = "Ryde";
-            this.Ryde.UseVisualStyleBackColor = true;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 122);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(162, 78);
-            this.label15.TabIndex = 72;
-            this.label15.Text = "Specify IP and Port of Ryde \r\nReceiver.\r\nClick the select band dropdown, \r\nit wil" +
-    "l be populated if the Ryde\r\nresponds.\r\nChoose QO-100 then press Add.";
-            // 
-            // ryde_add
-            // 
-            this.ryde_add.Enabled = false;
-            this.ryde_add.Location = new System.Drawing.Point(3, 259);
-            this.ryde_add.Name = "ryde_add";
-            this.ryde_add.Size = new System.Drawing.Size(169, 23);
-            this.ryde_add.TabIndex = 71;
-            this.ryde_add.Text = "Add";
-            this.ryde_add.UseVisualStyleBackColor = true;
-            this.ryde_add.Click += new System.EventHandler(this.ryde_add_Click);
-            // 
-            // ryde_band
-            // 
-            this.ryde_band.FormattingEnabled = true;
-            this.ryde_band.Location = new System.Drawing.Point(70, 74);
-            this.ryde_band.MaxDropDownItems = 2;
-            this.ryde_band.Name = "ryde_band";
-            this.ryde_band.Size = new System.Drawing.Size(91, 21);
-            this.ryde_band.TabIndex = 70;
-            this.ryde_band.Text = "Click Here";
-            this.ryde_band.SelectedIndexChanged += new System.EventHandler(this.ryde_band_SelectedIndexChanged);
-            this.ryde_band.Click += new System.EventHandler(this.ryde_band_Click);
-            // 
-            // ryde_label_band
-            // 
-            this.ryde_label_band.AutoSize = true;
-            this.ryde_label_band.Location = new System.Drawing.Point(5, 77);
-            this.ryde_label_band.Name = "ryde_label_band";
-            this.ryde_label_band.Size = new System.Drawing.Size(65, 13);
-            this.ryde_label_band.TabIndex = 69;
-            this.ryde_label_band.Text = "Select Band";
-            // 
-            // ryde_ip
-            // 
-            this.ryde_ip.Location = new System.Drawing.Point(70, 19);
-            this.ryde_ip.Name = "ryde_ip";
-            this.ryde_ip.Size = new System.Drawing.Size(91, 20);
-            this.ryde_ip.TabIndex = 62;
-            this.ryde_ip.Text = "192.168.1.43";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 22);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 13);
-            this.label9.TabIndex = 64;
-            this.label9.Text = "IP Address";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(26, 13);
-            this.label13.TabIndex = 65;
-            this.label13.Text = "Port";
-            // 
-            // ryde_port
-            // 
-            this.ryde_port.Location = new System.Drawing.Point(70, 48);
-            this.ryde_port.Name = "ryde_port";
-            this.ryde_port.Size = new System.Drawing.Size(39, 20);
-            this.ryde_port.TabIndex = 63;
-            this.ryde_port.Text = "8765";
-            // 
-            // WInterHill
-            // 
-            this.WInterHill.Controls.Add(this.button1);
-            this.WInterHill.Controls.Add(this.wh_ip);
-            this.WInterHill.Controls.Add(this.wh_lnb_offset);
-            this.WInterHill.Controls.Add(this.label12);
-            this.WInterHill.Controls.Add(this.label14);
-            this.WInterHill.Controls.Add(this.label16);
-            this.WInterHill.Controls.Add(this.wh_port);
-            this.WInterHill.Controls.Add(this.label20);
-            this.WInterHill.Controls.Add(this.wh_22KHz);
-            this.WInterHill.Controls.Add(this.label21);
-            this.WInterHill.Controls.Add(this.label22);
-            this.WInterHill.Controls.Add(this.wh_lnbvolts);
-            this.WInterHill.Controls.Add(this.wh_rxsocket);
-            this.WInterHill.Location = new System.Drawing.Point(4, 22);
-            this.WInterHill.Name = "WInterHill";
-            this.WInterHill.Padding = new System.Windows.Forms.Padding(3);
-            this.WInterHill.Size = new System.Drawing.Size(175, 285);
-            this.WInterHill.TabIndex = 2;
-            this.WInterHill.Text = "WinterHill";
-            this.WInterHill.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 259);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 23);
-            this.button1.TabIndex = 91;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // wh_ip
-            // 
-            this.wh_ip.Location = new System.Drawing.Point(69, 6);
-            this.wh_ip.Name = "wh_ip";
-            this.wh_ip.Size = new System.Drawing.Size(91, 20);
-            this.wh_ip.TabIndex = 85;
-            this.wh_ip.Text = "192.168.1.45";
-            // 
-            // wh_lnb_offset
-            // 
-            this.wh_lnb_offset.Location = new System.Drawing.Point(69, 61);
-            this.wh_lnb_offset.Name = "wh_lnb_offset";
-            this.wh_lnb_offset.Size = new System.Drawing.Size(66, 20);
-            this.wh_lnb_offset.TabIndex = 89;
-            this.wh_lnb_offset.Text = "9750000";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(5, 9);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 13);
-            this.label12.TabIndex = 87;
-            this.label12.Text = "IP Address";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(4, 64);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 13);
-            this.label14.TabIndex = 90;
-            this.label14.Text = "LNB Offset";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(5, 38);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(26, 13);
-            this.label16.TabIndex = 88;
-            this.label16.Text = "Port";
-            // 
-            // wh_port
-            // 
-            this.wh_port.Location = new System.Drawing.Point(69, 35);
-            this.wh_port.Name = "wh_port";
-            this.wh_port.Size = new System.Drawing.Size(39, 20);
-            this.wh_port.TabIndex = 86;
-            this.wh_port.Text = "9921";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(4, 145);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(63, 13);
-            this.label20.TabIndex = 78;
-            this.label20.Text = "LNB 22KHz";
-            // 
-            // wh_22KHz
-            // 
-            this.wh_22KHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.wh_22KHz.FormattingEnabled = true;
-            this.wh_22KHz.Items.AddRange(new object[] {
-            "Off",
-            "On"});
-            this.wh_22KHz.Location = new System.Drawing.Point(69, 142);
-            this.wh_22KHz.MaxDropDownItems = 3;
-            this.wh_22KHz.Name = "wh_22KHz";
-            this.wh_22KHz.Size = new System.Drawing.Size(66, 21);
-            this.wh_22KHz.TabIndex = 77;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(4, 117);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(54, 13);
-            this.label21.TabIndex = 76;
-            this.label21.Text = "LNB Volts";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(4, 90);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(57, 13);
-            this.label22.TabIndex = 75;
-            this.label22.Text = "Rx Socket";
-            // 
-            // wh_lnbvolts
-            // 
-            this.wh_lnbvolts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.wh_lnbvolts.FormattingEnabled = true;
-            this.wh_lnbvolts.Items.AddRange(new object[] {
-            "0",
-            "13",
-            "18"});
-            this.wh_lnbvolts.Location = new System.Drawing.Point(69, 114);
-            this.wh_lnbvolts.MaxDropDownItems = 3;
-            this.wh_lnbvolts.Name = "wh_lnbvolts";
-            this.wh_lnbvolts.Size = new System.Drawing.Size(66, 21);
-            this.wh_lnbvolts.TabIndex = 74;
-            // 
-            // wh_rxsocket
-            // 
-            this.wh_rxsocket.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.wh_rxsocket.FormattingEnabled = true;
-            this.wh_rxsocket.Items.AddRange(new object[] {
-            "A",
-            "B"});
-            this.wh_rxsocket.Location = new System.Drawing.Point(69, 87);
-            this.wh_rxsocket.MaxDropDownItems = 2;
-            this.wh_rxsocket.Name = "wh_rxsocket";
-            this.wh_rxsocket.Size = new System.Drawing.Size(66, 21);
-            this.wh_rxsocket.TabIndex = 73;
-            // 
             // AddRxForm
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -592,13 +592,14 @@ namespace QO_100_WB_Quick_Tune
             this.Name = "AddRxForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.AddRxForm_Load_1);
             this.tabControl1.ResumeLayout(false);
-            this.Minitioune.ResumeLayout(false);
-            this.Minitioune.PerformLayout();
-            this.Ryde.ResumeLayout(false);
-            this.Ryde.PerformLayout();
             this.WInterHill.ResumeLayout(false);
             this.WInterHill.PerformLayout();
+            this.Ryde.ResumeLayout(false);
+            this.Ryde.PerformLayout();
+            this.Minitioune.ResumeLayout(false);
+            this.Minitioune.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -834,10 +835,10 @@ namespace QO_100_WB_Quick_Tune
                     port = _port;
                     lo = _lo;
                     ip = address.ToString();
-                    rxsocket = mt_rxsocket.Text;
-                    lnbvolts = mt_lnbvolts.Text;
+                    rxsocket = wh_rxsocket.Text;
+                    lnbvolts = wh_lnbvolts.Text;
                     dvbmode = "-";
-                    lnb22khz = mt_22KHz.Text;
+                    lnb22khz = wh_22KHz.Text;
                     widescan = "-"; ;
                     lowsr = "-";
                     rx_added = "WinterHill";
@@ -846,6 +847,11 @@ namespace QO_100_WB_Quick_Tune
 
 
             
+        }
+
+        private void AddRxForm_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
