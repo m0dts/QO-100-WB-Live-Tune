@@ -540,10 +540,9 @@ namespace QO_100_WB_Quick_Tune
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 16);
+            this.label4.Location = new System.Drawing.Point(20, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(499, 286);
+            this.label4.Size = new System.Drawing.Size(800, 285);
             this.label4.TabIndex = 2;
             this.label4.Text = resources.GetString("label4.Text");
             // 
@@ -570,7 +569,7 @@ namespace QO_100_WB_Quick_Tune
             this.ClientSize = new System.Drawing.Size(929, 338);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.25b (June 2021) - @M0DTS";
+            this.Text = "QO-100 WB Quick Tune 1.26b (June 2021) - @M0DTS";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -585,7 +584,6 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
