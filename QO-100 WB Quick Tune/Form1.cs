@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -263,7 +264,7 @@ namespace QO_100_WB_Quick_Tune
                 float freq;
                 int sr;
                 
-                if (comma_sep){        //detect whether ',' or '.' thousand separator!
+           /*     if (comma_sep){        //detect whether ',' or '.' thousand separator!
                     freq = Convert.ToSingle(xval.Replace(".", ","));
                     sr = Convert.ToInt32(channel.Element("sr").Value.Replace(".", ","));
                 }
@@ -272,10 +273,11 @@ namespace QO_100_WB_Quick_Tune
                     freq = Convert.ToSingle(xval);
                     sr = Convert.ToInt32(channel.Element("sr").Value);
                 }
-                
+*/
 
-                
-              
+                freq = Convert.ToSingle(xval, CultureInfo.InvariantCulture);
+                sr = Convert.ToInt32(channel.Element("sr").Value, CultureInfo.InvariantCulture);
+
 
                 int pos = Convert.ToInt16((922.0 / span) * (freq - start_freq));
                 w = Convert.ToInt32(sr / (span * 1000.0) * 922 * rolloff);
@@ -705,17 +707,8 @@ namespace QO_100_WB_Quick_Tune
         {
             for(int n = 0; n < num_rxs_to_scan; n++) //RxList.Items.Count
             {
-                float time;
-                if (comma_sep){
-                    time = Convert.ToSingle(combo_WaitTime.Text.Replace(".",","));
-                }
-                else
-                {
-                    time = Convert.ToSingle(combo_WaitTime.Text);
-                }
-                
+                float time = Convert.ToSingle(combo_WaitTime.Text, CultureInfo.InvariantCulture);
                 Tuple<signal.Sig, int> ret = sigs.tune(combo_mode.SelectedIndex, Convert.ToInt16(time * 60),n);
-              //  Console.WriteLine(ret.Item1.frequency);
                 if (ret.Item1.frequency > 0)      //above 0 is a change in signal
                 {
                     System.Threading.Thread.Sleep(100);
