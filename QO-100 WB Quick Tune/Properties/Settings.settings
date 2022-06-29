@@ -54,5 +54,8 @@
     <Setting Name="mode" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="fft_url" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wss://eshail.batc.org.uk/wb/fft</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

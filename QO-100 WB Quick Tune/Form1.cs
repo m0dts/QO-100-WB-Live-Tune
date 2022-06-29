@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -152,19 +153,25 @@ namespace QO_100_WB_Quick_Tune
             }
 
 
-            sock = new socket();
+            sock = new socket(Properties.Settings.Default.fft_url);
             sigs = new signal(list_lock);
             sock.callback += drawspectrum;
             //sock.callback += sigs.detect_signals;
             //sigs.callback = drawspectrum_signals;
             string title = this.Text;
             this.Text = this.Text + " - Connecting to Server...";
-            sock.start();
+            
+            if ( sock.start() )
+            {
+                timer2.Enabled = true;
+            }
             this.Text = title;
 
             this.DoubleBuffered = true;
             update_count();
 
+            // fft recall
+            txtFFTUrl.Text = Properties.Settings.Default.fft_url;
 
             //autotune recall
 
@@ -208,7 +215,10 @@ namespace QO_100_WB_Quick_Tune
             Properties.Settings.Default.ReceiverList = Rxs;
             Properties.Settings.Default.Opacity = Opacity;
             Properties.Settings.Default.Minimal = checkBox_minimal.Checked;
-           // Properties.Settings.Default.Location = Location;
+            // Properties.Settings.Default.Location = Location;
+
+            // fft data source
+            Properties.Settings.Default.fft_url = txtFFTUrl.Text;
 
             //autotune
             Properties.Settings.Default.scan_dwell = combo_WaitTime.SelectedIndex;
@@ -317,7 +327,14 @@ namespace QO_100_WB_Quick_Tune
                     tmp.DrawString(s.frequency.ToString("#.00") + "\n " + (s.sr * 1000).ToString("#Ks"), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(s.fft_centre - 25), (255 - Convert.ToSingle(s.fft_strength + 38))));
                 }
             }
-            this.Invoke(new MethodInvoker(delegate () { spectrum.Image = bmp; spectrum.Update(); }));
+            try
+            {
+                this.Invoke(new MethodInvoker(delegate () { spectrum.Image = bmp; spectrum.Update(); }));
+            }
+            catch ( Exception Ex )
+            {
+
+            }
         }
 
 
@@ -328,6 +345,26 @@ namespace QO_100_WB_Quick_Tune
             tmp.DrawImage(bmp2, new Point(0, spectrum.Height - bandplan_height)); //bandplan
 
             int spectrum_h = spectrum.Height - bandplan_height;
+
+            PointF[] points = new PointF[fft_data.Length - 2];
+
+            for (int i = 1; i < fft_data.Length - 3; i++)     //ignore padding?
+            {
+                //tmp.DrawLine(greenpen, i - 1, 255 - fft_data[i - 1] / 255, i, 255 - fft_data[i] / 255);
+                PointF point = new PointF(i, 255 - fft_data[i] / 255);
+                points[i] = point;
+
+            }
+            points[0] = new PointF(0, 255);
+            points[points.Length - 1] = new PointF(922, 255);
+
+            LinearGradientBrush linGrBrush = new LinearGradientBrush(
+               new Point(0, 0),
+               new Point(0, 255),
+               Color.FromArgb(255, 255, 0, 0),   // Opaque red
+               Color.FromArgb(255, 0, 0, 255));  // Opaque blue
+
+            tmp.FillPolygon(linGrBrush, points);
 
             //draw lines to segment y axis determining where to click for each receiver
             if (receivers >= 1)
@@ -347,21 +384,13 @@ namespace QO_100_WB_Quick_Tune
                     {
                         //draw block showing signal selected
                         tmp.FillRectangles(shadowBrush, new RectangleF[] { new System.Drawing.Rectangle(rx_blocks[i, 0] - (rx_blocks[i, 1] / 2), spectrum_h - y + 1, rx_blocks[i, 1], (spectrum_h / receivers) - 4) });
-
                     }
                 }
             }
 
-
-            for (int i = 1; i < fft_data.Length - 3; i++)     //ignore padding?
-            {
-
-                tmp.DrawLine(greenpen, i - 1, 255 - fft_data[i - 1] / 255, i, 255 - fft_data[i] / 255);
-            }
             tmp.DrawString(InfoText, new Font("Tahoma", 12), Brushes.Yellow, new PointF(50, 0));
 
             drawspectrum_signals(sigs.detect_signals(fft_data));
-
 
             //pass bitmap to gui picture frame
         }
@@ -982,6 +1011,11 @@ namespace QO_100_WB_Quick_Tune
         private void check_avoidbeacon_CheckedChanged(object sender, EventArgs e)
         {
             sigs.set_avoidbeacon(check_avoidbeacon.Checked);
+        }
+
+        private void btnDefaultSource_Click(object sender, EventArgs e)
+        {
+            txtFFTUrl.Text = "wss://eshail.batc.org.uk/wb/fft";
         }
     }
 }

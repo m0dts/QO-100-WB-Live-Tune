@@ -80,6 +80,11 @@ namespace QO_100_WB_Quick_Tune
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer_wh = new System.Windows.Forms.Timer(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFFTUrl = new System.Windows.Forms.TextBox();
+            this.btnDefaultSource = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
@@ -90,6 +95,7 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -167,6 +173,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox3);
@@ -553,7 +560,6 @@ namespace QO_100_WB_Quick_Tune
             // 
             // timer2
             // 
-            this.timer2.Enabled = true;
             this.timer2.Interval = 1000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
@@ -562,14 +568,65 @@ namespace QO_100_WB_Quick_Tune
             this.timer_wh.Interval = 1000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.btnDefaultSource);
+            this.groupBox5.Controls.Add(this.txtFFTUrl);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Location = new System.Drawing.Point(360, 204);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(364, 100);
+            this.groupBox5.TabIndex = 15;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "FFT Data";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Data Source: ";
+            // 
+            // txtFFTUrl
+            // 
+            this.txtFFTUrl.Location = new System.Drawing.Point(94, 20);
+            this.txtFFTUrl.Name = "txtFFTUrl";
+            this.txtFFTUrl.Size = new System.Drawing.Size(181, 20);
+            this.txtFFTUrl.TabIndex = 1;
+            this.txtFFTUrl.Text = "wss://eshail.batc.org.uk/wb/fft";
+            // 
+            // btnDefaultSource
+            // 
+            this.btnDefaultSource.Location = new System.Drawing.Point(281, 18);
+            this.btnDefaultSource.Name = "btnDefaultSource";
+            this.btnDefaultSource.Size = new System.Drawing.Size(75, 23);
+            this.btnDefaultSource.TabIndex = 2;
+            this.btnDefaultSource.Text = "Default";
+            this.btnDefaultSource.UseVisualStyleBackColor = true;
+            this.btnDefaultSource.Click += new System.EventHandler(this.btnDefaultSource_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(30, 59);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(300, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Note: Changing this setting requires a restart of this application";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 338);
             this.Controls.Add(this.tabControl1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(945, 377);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.26b (June 2021) - @M0DTS";
+            this.Text = "QO-100 WB Quick Tune 1.27 (June 2022) - @M0DTS";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -584,6 +641,8 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -637,6 +696,11 @@ namespace QO_100_WB_Quick_Tune
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox check_avoidbeacon;
         private System.Windows.Forms.Label error_label;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtFFTUrl;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnDefaultSource;
+        private System.Windows.Forms.Label label8;
     }
 }
 
