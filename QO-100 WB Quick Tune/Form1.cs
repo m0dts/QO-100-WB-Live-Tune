@@ -351,12 +351,15 @@ namespace QO_100_WB_Quick_Tune
             for (int i = 1; i < fft_data.Length - 3; i++)     //ignore padding?
             {
                 //tmp.DrawLine(greenpen, i - 1, 255 - fft_data[i - 1] / 255, i, 255 - fft_data[i] / 255);
-                PointF point = new PointF(i, 255 - fft_data[i] / 255);
+                int spectrumCap = 255 - fft_data[i] / 255;
+                if (spectrumCap > 245)
+                    spectrumCap = 245;
+                PointF point = new PointF(i, spectrumCap);
                 points[i] = point;
 
             }
-            points[0] = new PointF(0, 255);
-            points[points.Length - 1] = new PointF(922, 255);
+            points[0] = new PointF(0, 245);
+            points[points.Length - 1] = new PointF(922, 245);
 
             LinearGradientBrush linGrBrush = new LinearGradientBrush(
                new Point(0, 0),
