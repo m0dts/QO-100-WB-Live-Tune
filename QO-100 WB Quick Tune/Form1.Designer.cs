@@ -39,6 +39,11 @@ namespace QO_100_WB_Quick_Tune
             this.button_close = new System.Windows.Forms.Button();
             this.spectrum = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnDefaultSource = new System.Windows.Forms.Button();
+            this.txtFFTUrl = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.wh_lo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -80,22 +85,18 @@ namespace QO_100_WB_Quick_Tune
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer_wh = new System.Windows.Forms.Timer(this.components);
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFFTUrl = new System.Windows.Forms.TextBox();
-            this.btnDefaultSource = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
+            this.btnChat = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_opacity)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -114,6 +115,7 @@ namespace QO_100_WB_Quick_Tune
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Black;
+            this.tabPage1.Controls.Add(this.btnChat);
             this.tabPage1.Controls.Add(this.error_label);
             this.tabPage1.Controls.Add(this.combo_mode);
             this.tabPage1.Controls.Add(this.button_close);
@@ -185,6 +187,55 @@ namespace QO_100_WB_Quick_Tune
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.btnDefaultSource);
+            this.groupBox5.Controls.Add(this.txtFFTUrl);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Location = new System.Drawing.Point(360, 204);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(364, 100);
+            this.groupBox5.TabIndex = 15;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "FFT Data";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(30, 59);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(300, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Note: Changing this setting requires a restart of this application";
+            // 
+            // btnDefaultSource
+            // 
+            this.btnDefaultSource.Location = new System.Drawing.Point(281, 18);
+            this.btnDefaultSource.Name = "btnDefaultSource";
+            this.btnDefaultSource.Size = new System.Drawing.Size(75, 23);
+            this.btnDefaultSource.TabIndex = 2;
+            this.btnDefaultSource.Text = "Default";
+            this.btnDefaultSource.UseVisualStyleBackColor = true;
+            this.btnDefaultSource.Click += new System.EventHandler(this.btnDefaultSource_Click);
+            // 
+            // txtFFTUrl
+            // 
+            this.txtFFTUrl.Location = new System.Drawing.Point(94, 20);
+            this.txtFFTUrl.Name = "txtFFTUrl";
+            this.txtFFTUrl.Size = new System.Drawing.Size(181, 20);
+            this.txtFFTUrl.TabIndex = 1;
+            this.txtFFTUrl.Text = "wss://eshail.batc.org.uk/wb/fft";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Data Source: ";
             // 
             // groupBox4
             // 
@@ -303,7 +354,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             this.trackBar_opacity.AutoSize = false;
             this.trackBar_opacity.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.trackBar_opacity.Location = new System.Drawing.Point(149, 42);
+            this.trackBar_opacity.Location = new System.Drawing.Point(121, 55);
             this.trackBar_opacity.Maximum = 100;
             this.trackBar_opacity.Minimum = 25;
             this.trackBar_opacity.Name = "trackBar_opacity";
@@ -315,7 +366,7 @@ namespace QO_100_WB_Quick_Tune
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(214, 23);
+            this.label9.Location = new System.Drawing.Point(118, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 10;
@@ -568,54 +619,15 @@ namespace QO_100_WB_Quick_Tune
             this.timer_wh.Interval = 1000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
-            // groupBox5
+            // btnChat
             // 
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.btnDefaultSource);
-            this.groupBox5.Controls.Add(this.txtFFTUrl);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Location = new System.Drawing.Point(360, 204);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(364, 100);
-            this.groupBox5.TabIndex = 15;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "FFT Data";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Data Source: ";
-            // 
-            // txtFFTUrl
-            // 
-            this.txtFFTUrl.Location = new System.Drawing.Point(94, 20);
-            this.txtFFTUrl.Name = "txtFFTUrl";
-            this.txtFFTUrl.Size = new System.Drawing.Size(181, 20);
-            this.txtFFTUrl.TabIndex = 1;
-            this.txtFFTUrl.Text = "wss://eshail.batc.org.uk/wb/fft";
-            // 
-            // btnDefaultSource
-            // 
-            this.btnDefaultSource.Location = new System.Drawing.Point(281, 18);
-            this.btnDefaultSource.Name = "btnDefaultSource";
-            this.btnDefaultSource.Size = new System.Drawing.Size(75, 23);
-            this.btnDefaultSource.TabIndex = 2;
-            this.btnDefaultSource.Text = "Default";
-            this.btnDefaultSource.UseVisualStyleBackColor = true;
-            this.btnDefaultSource.Click += new System.EventHandler(this.btnDefaultSource_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(30, 59);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(300, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Note: Changing this setting requires a restart of this application";
+            this.btnChat.Location = new System.Drawing.Point(135, 5);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(43, 23);
+            this.btnChat.TabIndex = 6;
+            this.btnChat.Text = "Chat";
+            this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
             // 
             // Form1
             // 
@@ -626,12 +638,14 @@ namespace QO_100_WB_Quick_Tune
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(945, 377);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.27 (June 2022) - @M0DTS";
+            this.Text = "Test QO-100 WB Quick Tune (Oct  2022) - @M0DTS/@ZR6TG";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -641,8 +655,6 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -701,6 +713,7 @@ namespace QO_100_WB_Quick_Tune
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnDefaultSource;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnChat;
     }
 }
 

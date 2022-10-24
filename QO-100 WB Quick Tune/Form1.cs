@@ -65,6 +65,7 @@ namespace QO_100_WB_Quick_Tune
 
         bool comma_sep = false;
 
+        private wbchat chatForm;
 
         public Form1()
         {
@@ -199,7 +200,8 @@ namespace QO_100_WB_Quick_Tune
             sigs.set_num_rx_scan(num_rxs_to_scan);
             sigs.set_num_rx(RxList.Items.Count);
 
-
+            // load chat window
+            chatForm = new wbchat();
         }
 
 
@@ -1019,6 +1021,11 @@ namespace QO_100_WB_Quick_Tune
         private void btnDefaultSource_Click(object sender, EventArgs e)
         {
             txtFFTUrl.Text = "wss://eshail.batc.org.uk/wb/fft";
+        }
+
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            chatForm.Show();
         }
     }
 }

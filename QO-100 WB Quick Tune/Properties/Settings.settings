@@ -57,5 +57,8 @@
     <Setting Name="fft_url" Type="System.String" Scope="User">
       <Value Profile="(Default)">wss://eshail.batc.org.uk/wb/fft</Value>
     </Setting>
+    <Setting Name="chat_nick" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
