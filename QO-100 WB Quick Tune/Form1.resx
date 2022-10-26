@@ -117,8 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <data name="textBox1.Text" xml:space="preserve">
     <value>QO-100 WB Quick Tune V1.28 (October 2022)
+
 
 Main Operation:
 Add up to 8 receivers to the Rx List, any combination of Minitioune/Ryde should work.
@@ -131,18 +133,15 @@ Auto Tune (hold) - Automatically tunes to next signal when the current signal st
 Auto Tune (timed) - Automatically tunes to the next signal after the defined dwell time.
 You can specify the number of receivers to scan, this will be starting from the first in the list. You can also choose to ignore the Beacon.
 
-New Features 1.23b:
-Now upto 8 receivers
-Remember Tune Mode
-
-1.26b:
-Use invariant Culture for number parsing - sorry but probably won't work with Win8 any more.
-
+Recent Changes:
 1.27:
 Pretty Spectrum. Specify FFT Data Source for local reception (ZR6TG)
 
 1.28:
+Fix missing band plan bars
+1.29:
 Wideband Spectrum monitor chat integration (ZR6TG)
+
 </value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

@@ -85,7 +85,9 @@ namespace QO_100_WB_Quick_Tune
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer_wh = new System.Windows.Forms.Timer(this.components);
+
             this.textBox1 = new System.Windows.Forms.TextBox();
+
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
@@ -621,6 +623,7 @@ namespace QO_100_WB_Quick_Tune
             this.timer_wh.Interval = 1000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
+
             // textBox1
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -633,6 +636,7 @@ namespace QO_100_WB_Quick_Tune
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
+
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -642,7 +646,10 @@ namespace QO_100_WB_Quick_Tune
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(945, 377);
             this.Name = "Form1";
+
             this.Text = "QO-100 WB Quick Tune (Oct  2022) - @M0DTS";
+
+
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -659,7 +666,9 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+
             this.tabPage3.PerformLayout();
+
             this.ResumeLayout(false);
 
         }
