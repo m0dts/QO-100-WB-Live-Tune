@@ -34,6 +34,7 @@ namespace QO_100_WB_Quick_Tune
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnChat = new System.Windows.Forms.Button();
             this.error_label = new System.Windows.Forms.Label();
             this.combo_mode = new System.Windows.Forms.ComboBox();
             this.button_close = new System.Windows.Forms.Button();
@@ -81,10 +82,12 @@ namespace QO_100_WB_Quick_Tune
             this.RxType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RydeBand = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer_wh = new System.Windows.Forms.Timer(this.components);
+
+            this.textBox1 = new System.Windows.Forms.TextBox();
+
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
@@ -114,6 +117,7 @@ namespace QO_100_WB_Quick_Tune
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Black;
+            this.tabPage1.Controls.Add(this.btnChat);
             this.tabPage1.Controls.Add(this.error_label);
             this.tabPage1.Controls.Add(this.combo_mode);
             this.tabPage1.Controls.Add(this.button_close);
@@ -124,6 +128,16 @@ namespace QO_100_WB_Quick_Tune
             this.tabPage1.Size = new System.Drawing.Size(921, 313);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Display";
+            // 
+            // btnChat
+            // 
+            this.btnChat.Location = new System.Drawing.Point(135, 5);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(43, 23);
+            this.btnChat.TabIndex = 6;
+            this.btnChat.Text = "Chat";
+            this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
             // 
             // error_label
             // 
@@ -352,7 +366,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             this.trackBar_opacity.AutoSize = false;
             this.trackBar_opacity.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.trackBar_opacity.Location = new System.Drawing.Point(149, 42);
+            this.trackBar_opacity.Location = new System.Drawing.Point(121, 55);
             this.trackBar_opacity.Maximum = 100;
             this.trackBar_opacity.Minimum = 25;
             this.trackBar_opacity.Name = "trackBar_opacity";
@@ -364,7 +378,7 @@ namespace QO_100_WB_Quick_Tune
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(214, 23);
+            this.label9.Location = new System.Drawing.Point(118, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 10;
@@ -585,7 +599,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -593,14 +607,6 @@ namespace QO_100_WB_Quick_Tune
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Info";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(20, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(800, 285);
-            this.label4.TabIndex = 2;
-            this.label4.Text = resources.GetString("label4.Text");
             // 
             // timer1
             // 
@@ -617,6 +623,20 @@ namespace QO_100_WB_Quick_Tune
             this.timer_wh.Interval = 1000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
+
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(915, 307);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
+            // 
+
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -626,7 +646,10 @@ namespace QO_100_WB_Quick_Tune
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(945, 377);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.28 (July 2022) - @M0DTS";
+
+            this.Text = "QO-100 WB Quick Tune (Oct  2022) - @M0DTS";
+
+
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -643,6 +666,9 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+
+            this.tabPage3.PerformLayout();
+
             this.ResumeLayout(false);
 
         }
@@ -676,7 +702,6 @@ namespace QO_100_WB_Quick_Tune
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox combo_WaitTime;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ColumnHeader RydeBand;
@@ -701,6 +726,8 @@ namespace QO_100_WB_Quick_Tune
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnDefaultSource;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnChat;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

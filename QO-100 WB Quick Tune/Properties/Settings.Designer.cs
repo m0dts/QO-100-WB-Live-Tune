@@ -230,5 +230,17 @@ namespace QO_100_WB_Quick_Tune.Properties {
                 this["fft_url"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string chat_nick {
+            get {
+                return ((string)(this["chat_nick"]));
+            }
+            set {
+                this["chat_nick"] = value;
+            }
+        }
     }
 }
