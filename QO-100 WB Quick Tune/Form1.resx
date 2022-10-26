@@ -117,9 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-
   <data name="textBox1.Text" xml:space="preserve">
-    <value>QO-100 WB Quick Tune V1.28 (October 2022)
+    <value>QO-100 WB Quick Tune V1.29 (October 2022)
 
 
 Main Operation:
@@ -136,7 +135,6 @@ You can specify the number of receivers to scan, this will be starting from the 
 Recent Changes:
 1.27:
 Pretty Spectrum. Specify FFT Data Source for local reception (ZR6TG)
-
 1.28:
 Fix missing band plan bars
 1.29:

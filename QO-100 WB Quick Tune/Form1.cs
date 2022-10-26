@@ -101,7 +101,7 @@ namespace QO_100_WB_Quick_Tune
                     RxList.Items.Add(new ListViewItem(vals));
                 }
             }
-
+       
             if (Properties.Settings.Default.Opacity > 0)
             {
                 Opacity = Properties.Settings.Default.Opacity;
@@ -1026,6 +1026,11 @@ namespace QO_100_WB_Quick_Tune
         private void btnChat_Click(object sender, EventArgs e)
         {
             chatForm.Show();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

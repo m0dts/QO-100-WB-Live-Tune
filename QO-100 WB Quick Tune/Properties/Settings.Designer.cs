@@ -12,7 +12,7 @@ namespace QO_100_WB_Quick_Tune.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -56,22 +56,6 @@ namespace QO_100_WB_Quick_Tune.Properties {
             }
             set {
                 this["mt_port"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>232.0.0.11,6789,9750000</string>
-  <string>232.0.0.11,6790,9750000</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection ReceiverList {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["ReceiverList"]));
-            }
-            set {
-                this["ReceiverList"] = value;
             }
         }
         
@@ -240,6 +224,19 @@ namespace QO_100_WB_Quick_Tune.Properties {
             }
             set {
                 this["chat_nick"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsd=\"http://www.w3." +
+            "org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
+        public global::System.Collections.Specialized.StringCollection ReceiverList {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["ReceiverList"]));
+            }
+            set {
+                this["ReceiverList"] = value;
             }
         }
     }
