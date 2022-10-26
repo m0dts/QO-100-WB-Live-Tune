@@ -160,7 +160,7 @@ namespace QO_100_WB_Quick_Tune
         {
             if (client.Connected)
             {
-                string nick = txtNick.Text;
+                string nick = txtNick.Text.Trim();
 
                 if (nick.Length > 0)
                 {
@@ -187,7 +187,8 @@ namespace QO_100_WB_Quick_Tune
         {
             if (client.Connected)
             {
-                string msg = txtMessage.Text;
+                string msg = txtMessage.Text.Trim();
+
                 if (msg.Length > 0)
                 {
                     client.EmitAsync("message", new chatMessage { message = msg });
@@ -222,6 +223,18 @@ namespace QO_100_WB_Quick_Tune
             {
                 string selectedName = lbUsers.SelectedItem.ToString();
                 txtMessage.Text = txtMessage.Text + " @" + selectedName + " ";
+            }
+        }
+
+        private void checkStayOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            if ( checkStayOnTop.Checked )
+            {
+                TopMost = true;
+            }
+            else
+            {
+                TopMost = false;
             }
         }
     }

@@ -31,16 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wbchat));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblConnected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblViewers = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbUsers = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lbChat = new System.Windows.Forms.ListBox();
-            this.txtMessage = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.txtNick = new System.Windows.Forms.TextBox();
             this.btnSetNick = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblViewers = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtNick = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.checkStayOnTop = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -54,10 +55,6 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblConnected,
-            this.toolStripStatusLabel1,
-            this.lblViewers});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
@@ -69,6 +66,18 @@
             this.lblConnected.Name = "lblConnected";
             this.lblConnected.Size = new System.Drawing.Size(97, 17);
             this.lblConnected.Text = "Connected: False";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(18, 17);
+            this.toolStripStatusLabel1.Text = " - ";
+            // 
+            // lblViewers
+            // 
+            this.lblViewers.Name = "lblViewers";
+            this.lblViewers.Size = new System.Drawing.Size(62, 17);
+            this.lblViewers.Text = "Viewers : 0";
             // 
             // splitContainer1
             // 
@@ -112,6 +121,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.checkStayOnTop);
             this.splitContainer2.Panel2.Controls.Add(this.btnSetNick);
             this.splitContainer2.Panel2.Controls.Add(this.txtNick);
             this.splitContainer2.Panel2.Controls.Add(this.btnSend);
@@ -132,14 +142,22 @@
             this.lbChat.Size = new System.Drawing.Size(616, 365);
             this.lbChat.TabIndex = 0;
             // 
-            // txtMessage
+            // btnSetNick
             // 
-            this.txtMessage.Enabled = false;
-            this.txtMessage.Location = new System.Drawing.Point(16, 31);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(507, 20);
-            this.txtMessage.TabIndex = 0;
-            this.txtMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
+            this.btnSetNick.Location = new System.Drawing.Point(529, 5);
+            this.btnSetNick.Name = "btnSetNick";
+            this.btnSetNick.Size = new System.Drawing.Size(75, 20);
+            this.btnSetNick.TabIndex = 3;
+            this.btnSetNick.Text = "Set Nick";
+            this.btnSetNick.UseVisualStyleBackColor = true;
+            this.btnSetNick.Click += new System.EventHandler(this.btnSetNick_Click);
+            // 
+            // txtNick
+            // 
+            this.txtNick.Location = new System.Drawing.Point(423, 5);
+            this.txtNick.Name = "txtNick";
+            this.txtNick.Size = new System.Drawing.Size(100, 20);
+            this.txtNick.TabIndex = 2;
             // 
             // btnSend
             // 
@@ -152,34 +170,25 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // txtNick
+            // txtMessage
             // 
-            this.txtNick.Location = new System.Drawing.Point(423, 5);
-            this.txtNick.Name = "txtNick";
-            this.txtNick.Size = new System.Drawing.Size(100, 20);
-            this.txtNick.TabIndex = 2;
+            this.txtMessage.Enabled = false;
+            this.txtMessage.Location = new System.Drawing.Point(16, 31);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(507, 20);
+            this.txtMessage.TabIndex = 0;
+            this.txtMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
             // 
-            // btnSetNick
+            // checkStayOnTop
             // 
-            this.btnSetNick.Location = new System.Drawing.Point(529, 5);
-            this.btnSetNick.Name = "btnSetNick";
-            this.btnSetNick.Size = new System.Drawing.Size(75, 20);
-            this.btnSetNick.TabIndex = 3;
-            this.btnSetNick.Text = "Set Nick";
-            this.btnSetNick.UseVisualStyleBackColor = true;
-            this.btnSetNick.Click += new System.EventHandler(this.btnSetNick_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(18, 17);
-            this.toolStripStatusLabel1.Text = " - ";
-            // 
-            // lblViewers
-            // 
-            this.lblViewers.Name = "lblViewers";
-            this.lblViewers.Size = new System.Drawing.Size(62, 17);
-            this.lblViewers.Text = "Viewers : 0";
+            this.checkStayOnTop.AutoSize = true;
+            this.checkStayOnTop.Location = new System.Drawing.Point(16, 8);
+            this.checkStayOnTop.Name = "checkStayOnTop";
+            this.checkStayOnTop.Size = new System.Drawing.Size(88, 17);
+            this.checkStayOnTop.TabIndex = 4;
+            this.checkStayOnTop.Text = "Keep on Top";
+            this.checkStayOnTop.UseVisualStyleBackColor = true;
+            this.checkStayOnTop.CheckedChanged += new System.EventHandler(this.checkStayOnTop_CheckedChanged);
             // 
             // wbchat
             // 
@@ -224,5 +233,6 @@
         private System.Windows.Forms.TextBox txtNick;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblViewers;
+        private System.Windows.Forms.CheckBox checkStayOnTop;
     }
 }
