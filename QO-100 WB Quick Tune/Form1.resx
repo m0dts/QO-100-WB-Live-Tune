@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>QO-100 WB Quick Tune V1.29 (October 2022)
+    <value>QO-100 WB Quick Tune V1.30 (February 2023)
 
 
 Main Operation:
@@ -139,7 +139,8 @@ Pretty Spectrum. Specify FFT Data Source for local reception (ZR6TG)
 Fix missing band plan bars
 1.29:
 Wideband Spectrum monitor chat integration (ZR6TG)
-
+1.30:
+Chat Font Settings (ZR6TG)
 </value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
