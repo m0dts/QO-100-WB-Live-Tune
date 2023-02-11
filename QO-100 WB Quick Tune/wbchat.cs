@@ -237,5 +237,17 @@ namespace QO_100_WB_Quick_Tune
                 TopMost = false;
             }
         }
+
+        private void copySelectedTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string copy = "";
+
+            for (int c = 0; c < lbChat.SelectedItems.Count; c++)
+            {
+                copy += lbChat.SelectedItems[c].ToString() + "\n";
+            }
+
+            Clipboard.SetText(copy);
+        }
     }
 }

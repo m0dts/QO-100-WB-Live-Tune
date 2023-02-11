@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wbchat));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblConnected = new System.Windows.Forms.ToolStripStatusLabel();
@@ -37,12 +38,13 @@
             this.lbUsers = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lbChat = new System.Windows.Forms.ListBox();
+            this.checkStayOnTop = new System.Windows.Forms.CheckBox();
             this.btnSetNick = new System.Windows.Forms.Button();
             this.txtNick = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
-            this.checkStayOnTop = new System.Windows.Forms.CheckBox();
-            this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copySelectedTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -51,6 +53,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -132,15 +135,27 @@
             // 
             // lbChat
             // 
+            this.lbChat.ContextMenuStrip = this.contextMenuStrip1;
             this.lbChat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbChat.FormattingEnabled = true;
             this.lbChat.HorizontalScrollbar = true;
             this.lbChat.Location = new System.Drawing.Point(0, 0);
             this.lbChat.Name = "lbChat";
             this.lbChat.ScrollAlwaysVisible = true;
-            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbChat.Size = new System.Drawing.Size(616, 365);
             this.lbChat.TabIndex = 0;
+            // 
+            // checkStayOnTop
+            // 
+            this.checkStayOnTop.AutoSize = true;
+            this.checkStayOnTop.Location = new System.Drawing.Point(16, 8);
+            this.checkStayOnTop.Name = "checkStayOnTop";
+            this.checkStayOnTop.Size = new System.Drawing.Size(88, 17);
+            this.checkStayOnTop.TabIndex = 4;
+            this.checkStayOnTop.Text = "Keep on Top";
+            this.checkStayOnTop.UseVisualStyleBackColor = true;
+            this.checkStayOnTop.CheckedChanged += new System.EventHandler(this.checkStayOnTop_CheckedChanged);
             // 
             // btnSetNick
             // 
@@ -179,16 +194,20 @@
             this.txtMessage.TabIndex = 0;
             this.txtMessage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMessage_KeyPress);
             // 
-            // checkStayOnTop
+            // contextMenuStrip1
             // 
-            this.checkStayOnTop.AutoSize = true;
-            this.checkStayOnTop.Location = new System.Drawing.Point(16, 8);
-            this.checkStayOnTop.Name = "checkStayOnTop";
-            this.checkStayOnTop.Size = new System.Drawing.Size(88, 17);
-            this.checkStayOnTop.TabIndex = 4;
-            this.checkStayOnTop.Text = "Keep on Top";
-            this.checkStayOnTop.UseVisualStyleBackColor = true;
-            this.checkStayOnTop.CheckedChanged += new System.EventHandler(this.checkStayOnTop_CheckedChanged);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copySelectedTextToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(216, 48);
+            // 
+            // copySelectedTextToolStripMenuItem
+            // 
+            this.copySelectedTextToolStripMenuItem.Name = "copySelectedTextToolStripMenuItem";
+            this.copySelectedTextToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copySelectedTextToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.copySelectedTextToolStripMenuItem.Text = "Copy Selected Text";
+            this.copySelectedTextToolStripMenuItem.Click += new System.EventHandler(this.copySelectedTextToolStripMenuItem_Click);
             // 
             // wbchat
             // 
@@ -203,8 +222,6 @@
             this.Text = "Wideband Chat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.wbchat_FormClosing);
             this.Load += new System.EventHandler(this.wbchat_Load);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -214,6 +231,7 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,10 +241,7 @@
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblConnected;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListBox lbUsers;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ListBox lbChat;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Button btnSetNick;
@@ -234,5 +249,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblViewers;
         private System.Windows.Forms.CheckBox checkStayOnTop;
+        public System.Windows.Forms.ListBox lbUsers;
+        public System.Windows.Forms.ListBox lbChat;
+        public System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem copySelectedTextToolStripMenuItem;
     }
 }
