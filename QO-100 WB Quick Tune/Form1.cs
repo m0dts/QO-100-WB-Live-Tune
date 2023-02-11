@@ -202,16 +202,6 @@ namespace QO_100_WB_Quick_Tune
 
             // load chat window
             chatForm = new wbchat();
-            chatForm.lbUsers.Font = Properties.Settings.Default.ChatFont;
-            chatForm.lbChat.Font = Properties.Settings.Default.ChatFont;
-
-            if (Properties.Settings.Default.ChatWidth >= 0)
-            {
-                chatForm.Width = Properties.Settings.Default.ChatWidth;
-                chatForm.Height = Properties.Settings.Default.ChatHeight;
-            }
-
-            chatForm.splitContainer1.SplitterDistance = Properties.Settings.Default.ChatSplitterDistance;
         }
 
 
@@ -245,12 +235,7 @@ namespace QO_100_WB_Quick_Tune
             Properties.Settings.Default.wh_lo = wh_lo.Text;
             Properties.Settings.Default.wh_scan_checked = checkBox_wh_scan.Checked;
 
-            Properties.Settings.Default.ChatFont = chatForm.lbChat.Font;
-            Properties.Settings.Default.ChatWidth = chatForm.Width;
-            Properties.Settings.Default.ChatHeight = chatForm.Height;
-
-            Properties.Settings.Default.ChatSplitterDistance = chatForm.splitContainer1.SplitterDistance;
-
+            
             //finally save
             Properties.Settings.Default.Save();
         }
@@ -1046,22 +1031,6 @@ namespace QO_100_WB_Quick_Tune
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnChatFontSettings_Click(object sender, EventArgs e)
-        {
-            FontDialog fontDialog = new FontDialog();
-
-            fontDialog.ShowEffects = false;
-            fontDialog.ShowHelp = false;
-            fontDialog.Font = chatForm.lbChat.Font;
-
-            if (fontDialog.ShowDialog() == DialogResult.OK)
-            {
-                chatForm.lbChat.Font = fontDialog.Font;
-                chatForm.lbUsers.Font = fontDialog.Font;
-
-            }
         }
     }
 }
