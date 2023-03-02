@@ -64,6 +64,7 @@ namespace QO_100_WB_Quick_Tune
         string rydebandinfo = "";
 
         bool comma_sep = false;
+        bool showRXLabels = false;
 
         private wbchat chatForm;
 
@@ -121,6 +122,9 @@ namespace QO_100_WB_Quick_Tune
                 FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 button_close.Visible = false;
             }
+
+            showRXLabels = Properties.Settings.Default.showrxlabels;
+            checkBox_showRXLabels.Checked = showRXLabels;
 
             //Location = Properties.Settings.Default.Location;
 
@@ -204,6 +208,7 @@ namespace QO_100_WB_Quick_Tune
             chatForm = new wbchat();
             chatForm.lbUsers.Font = Properties.Settings.Default.ChatFont;
             chatForm.lbChat.Font = Properties.Settings.Default.ChatFont;
+            chatForm.txtMessage.Font = Properties.Settings.Default.ChatFont;
 
             if (Properties.Settings.Default.ChatWidth >= 0)
             {
@@ -227,6 +232,7 @@ namespace QO_100_WB_Quick_Tune
             Properties.Settings.Default.ReceiverList = Rxs;
             Properties.Settings.Default.Opacity = Opacity;
             Properties.Settings.Default.Minimal = checkBox_minimal.Checked;
+            Properties.Settings.Default.showrxlabels = showRXLabels;
             // Properties.Settings.Default.Location = Location;
 
             // fft data source
@@ -250,6 +256,8 @@ namespace QO_100_WB_Quick_Tune
             Properties.Settings.Default.ChatHeight = chatForm.Height;
 
             Properties.Settings.Default.ChatSplitterDistance = chatForm.splitContainer1.SplitterDistance;
+
+
 
             //finally save
             Properties.Settings.Default.Save();
@@ -355,6 +363,21 @@ namespace QO_100_WB_Quick_Tune
         }
 
 
+        public static string getReceiverText(ListView rxList, int rx)
+        {
+            if (rxList.InvokeRequired)
+            {
+                return (string)rxList.Invoke(
+                  new Func<String>(() => getReceiverText(rxList, rx))
+                );
+            }
+            else
+            {
+                string varText = rxList.Items[rx].SubItems[9].Text;
+                return varText;
+            }
+        }
+
         private void drawspectrum(UInt16[] fft_data)
         {
             int receivers = RxList.Items.Count;
@@ -399,7 +422,15 @@ namespace QO_100_WB_Quick_Tune
                     {
                         tmp.DrawLine(greypen, 0, y, 922, y);
                     }
+
+                    if (showRXLabels)
+                    {
+                        string receiverName = getReceiverText(RxList, i);
+                        tmp.DrawString(receiverName, new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), 14 + (spectrum_h - tyoffset - Convert.ToSingle((spectrum_h / receivers) * i + 1))));
+                    }
+
                     tmp.DrawString((receivers - (i)).ToString(), new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), (spectrum_h - tyoffset - Convert.ToSingle((spectrum_h / receivers) * i + 1))));
+
                     if (rx_blocks[i, 0] > 0)
                     {
                         //draw block showing signal selected
@@ -1062,6 +1093,11 @@ namespace QO_100_WB_Quick_Tune
                 chatForm.lbUsers.Font = fontDialog.Font;
 
             }
+        }
+
+        private void checkBox_showRXLabels_CheckedChanged(object sender, EventArgs e)
+        {
+            showRXLabels = checkBox_showRXLabels.Checked;
         }
     }
 }

@@ -54,6 +54,7 @@ namespace QO_100_WB_Quick_Tune
             this.label5 = new System.Windows.Forms.Label();
             this.wh_port = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnChatFontSettings = new System.Windows.Forms.Button();
             this.checkBox_ontop = new System.Windows.Forms.CheckBox();
             this.checkBox_minimal = new System.Windows.Forms.CheckBox();
             this.trackBar_opacity = new System.Windows.Forms.TrackBar();
@@ -86,7 +87,7 @@ namespace QO_100_WB_Quick_Tune
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer_wh = new System.Windows.Forms.Timer(this.components);
-            this.btnChatFontSettings = new System.Windows.Forms.Button();
+            this.checkBox_showRXLabels = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spectrum)).BeginInit();
@@ -328,6 +329,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox_showRXLabels);
             this.groupBox2.Controls.Add(this.btnChatFontSettings);
             this.groupBox2.Controls.Add(this.checkBox_ontop);
             this.groupBox2.Controls.Add(this.checkBox_minimal);
@@ -339,6 +341,16 @@ namespace QO_100_WB_Quick_Tune
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Display Settings";
+            // 
+            // btnChatFontSettings
+            // 
+            this.btnChatFontSettings.Location = new System.Drawing.Point(6, 68);
+            this.btnChatFontSettings.Name = "btnChatFontSettings";
+            this.btnChatFontSettings.Size = new System.Drawing.Size(109, 23);
+            this.btnChatFontSettings.TabIndex = 12;
+            this.btnChatFontSettings.Text = "Chat Font Settings";
+            this.btnChatFontSettings.UseVisualStyleBackColor = true;
+            this.btnChatFontSettings.Click += new System.EventHandler(this.btnChatFontSettings_Click);
             // 
             // checkBox_ontop
             // 
@@ -366,7 +378,7 @@ namespace QO_100_WB_Quick_Tune
             // 
             this.trackBar_opacity.AutoSize = false;
             this.trackBar_opacity.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.trackBar_opacity.Location = new System.Drawing.Point(144, 55);
+            this.trackBar_opacity.Location = new System.Drawing.Point(144, 65);
             this.trackBar_opacity.Maximum = 100;
             this.trackBar_opacity.Minimum = 25;
             this.trackBar_opacity.Name = "trackBar_opacity";
@@ -378,7 +390,7 @@ namespace QO_100_WB_Quick_Tune
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(141, 23);
+            this.label9.Location = new System.Drawing.Point(141, 49);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 10;
@@ -636,15 +648,16 @@ namespace QO_100_WB_Quick_Tune
             this.timer_wh.Interval = 1000;
             this.timer_wh.Tick += new System.EventHandler(this.timer_wh_Tick);
             // 
-            // btnChatFontSettings
+            // checkBox_showRXLabels
             // 
-            this.btnChatFontSettings.Location = new System.Drawing.Point(6, 68);
-            this.btnChatFontSettings.Name = "btnChatFontSettings";
-            this.btnChatFontSettings.Size = new System.Drawing.Size(109, 23);
-            this.btnChatFontSettings.TabIndex = 12;
-            this.btnChatFontSettings.Text = "Chat Font Settings";
-            this.btnChatFontSettings.UseVisualStyleBackColor = true;
-            this.btnChatFontSettings.Click += new System.EventHandler(this.btnChatFontSettings_Click);
+            this.checkBox_showRXLabels.AutoSize = true;
+            this.checkBox_showRXLabels.Location = new System.Drawing.Point(144, 22);
+            this.checkBox_showRXLabels.Name = "checkBox_showRXLabels";
+            this.checkBox_showRXLabels.Size = new System.Drawing.Size(132, 17);
+            this.checkBox_showRXLabels.TabIndex = 13;
+            this.checkBox_showRXLabels.Text = "Show RX Type Labels";
+            this.checkBox_showRXLabels.UseVisualStyleBackColor = true;
+            this.checkBox_showRXLabels.CheckedChanged += new System.EventHandler(this.checkBox_showRXLabels_CheckedChanged);
             // 
             // Form1
             // 
@@ -655,7 +668,7 @@ namespace QO_100_WB_Quick_Tune
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(945, 377);
             this.Name = "Form1";
-            this.Text = "QO-100 WB Quick Tune 1.30 (Feb  2023) ";
+            this.Text = "QO-100 WB Quick Tune 1.31 (Mar 2023) ";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -733,6 +746,7 @@ namespace QO_100_WB_Quick_Tune
         private System.Windows.Forms.Button btnChat;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnChatFontSettings;
+        private System.Windows.Forms.CheckBox checkBox_showRXLabels;
     }
 }
 

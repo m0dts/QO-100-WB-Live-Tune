@@ -286,5 +286,17 @@ namespace QO_100_WB_Quick_Tune.Properties {
                 this["ChatSplitterDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool showrxlabels {
+            get {
+                return ((bool)(this["showrxlabels"]));
+            }
+            set {
+                this["showrxlabels"] = value;
+            }
+        }
     }
 }
