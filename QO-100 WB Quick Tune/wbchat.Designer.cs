@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wbchat));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.txtNick = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblConnected = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblViewers = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbUsers = new System.Windows.Forms.ListBox();
+            this.lbChat = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copySelectedTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtNick = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lbChat = new System.Windows.Forms.ListBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -58,6 +58,14 @@
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // txtNick
+            // 
+            this.txtNick.IsLink = true;
+            this.txtNick.Name = "txtNick";
+            this.txtNick.Size = new System.Drawing.Size(118, 17);
+            this.txtNick.Text = "toolStripStatusLabel2";
+            this.txtNick.Click += new System.EventHandler(this.txtNick_Click);
             // 
             // lblConnected
             // 
@@ -107,6 +115,20 @@
             this.lbUsers.TabIndex = 0;
             this.lbUsers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbUsers_MouseDoubleClick);
             // 
+            // lbChat
+            // 
+            this.lbChat.ContextMenuStrip = this.contextMenuStrip1;
+            this.lbChat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbChat.FormattingEnabled = true;
+            this.lbChat.HorizontalScrollbar = true;
+            this.lbChat.IntegralHeight = false;
+            this.lbChat.Location = new System.Drawing.Point(0, 0);
+            this.lbChat.Name = "lbChat";
+            this.lbChat.ScrollAlwaysVisible = true;
+            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbChat.Size = new System.Drawing.Size(616, 408);
+            this.lbChat.TabIndex = 1;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -121,28 +143,6 @@
             this.copySelectedTextToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.copySelectedTextToolStripMenuItem.Text = "Copy Selected Text";
             this.copySelectedTextToolStripMenuItem.Click += new System.EventHandler(this.copySelectedTextToolStripMenuItem_Click);
-            // 
-            // txtNick
-            // 
-            this.txtNick.IsLink = true;
-            this.txtNick.Name = "txtNick";
-            this.txtNick.Size = new System.Drawing.Size(118, 17);
-            this.txtNick.Text = "toolStripStatusLabel2";
-            this.txtNick.Click += new System.EventHandler(this.txtNick_Click);
-            // 
-            // lbChat
-            // 
-            this.lbChat.ContextMenuStrip = this.contextMenuStrip1;
-            this.lbChat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbChat.FormattingEnabled = true;
-            this.lbChat.HorizontalScrollbar = true;
-            this.lbChat.IntegralHeight = false;
-            this.lbChat.Location = new System.Drawing.Point(0, 0);
-            this.lbChat.Name = "lbChat";
-            this.lbChat.ScrollAlwaysVisible = true;
-            this.lbChat.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbChat.Size = new System.Drawing.Size(616, 408);
-            this.lbChat.TabIndex = 1;
             // 
             // txtMessage
             // 

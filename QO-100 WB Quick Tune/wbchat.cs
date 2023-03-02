@@ -267,5 +267,10 @@ namespace QO_100_WB_Quick_Tune
                 setNick();
             }
         }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

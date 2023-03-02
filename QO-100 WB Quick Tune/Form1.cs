@@ -425,7 +425,7 @@ namespace QO_100_WB_Quick_Tune
 
                     if (showRXLabels)
                     {
-                        string receiverName = getReceiverText(RxList, i);
+                        string receiverName = getReceiverText(RxList, receivers -i -1);
                         tmp.DrawString(receiverName, new Font("Tahoma", 10), Brushes.White, new PointF(Convert.ToSingle(0), 14 + (spectrum_h - tyoffset - Convert.ToSingle((spectrum_h / receivers) * i + 1))));
                     }
 
@@ -1015,8 +1015,6 @@ namespace QO_100_WB_Quick_Tune
         }
 
 
-
-
         //winterhill bits
         IPAddress winterhill_ip;
         int winterhill_port;
@@ -1098,6 +1096,11 @@ namespace QO_100_WB_Quick_Tune
         private void checkBox_showRXLabels_CheckedChanged(object sender, EventArgs e)
         {
             showRXLabels = checkBox_showRXLabels.Checked;
+        }
+
+        private void checkBox_chatontop_CheckedChanged(object sender, EventArgs e)
+        {
+            chatForm.TopMost = checkBox_chatontop.Checked;
         }
     }
 }
