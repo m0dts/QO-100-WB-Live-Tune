@@ -21,6 +21,10 @@ namespace QO_100_WB_Quick_Tune
             {
                 txtNick.Text = Properties.Settings.Default.chat_nick;
             }
+            else
+            {
+                txtNick.Text = "NONICK";
+            }
 
             client = new SocketIO("https://eshail.batc.org.uk/", new SocketIOOptions
             {
@@ -165,8 +169,7 @@ namespace QO_100_WB_Quick_Tune
                 if (nick.Length > 0)
                 {
                     client.EmitAsync("setnick", new nickInfo { nick = nick });
-                    txtMessage.Enabled = true;
-                    btnSend.Enabled = true;
+                    txtMessage.Enabled = true;                    
                     AddItem(lbChat, "*** Your nick is set to " + nick + " ***");
                     Properties.Settings.Default.chat_nick = nick;
                 }
@@ -228,6 +231,7 @@ namespace QO_100_WB_Quick_Tune
 
         private void checkStayOnTop_CheckedChanged(object sender, EventArgs e)
         {
+            /*
             if ( checkStayOnTop.Checked )
             {
                 TopMost = true;
@@ -236,6 +240,7 @@ namespace QO_100_WB_Quick_Tune
             {
                 TopMost = false;
             }
+            */
         }
 
         private void copySelectedTextToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,6 +253,24 @@ namespace QO_100_WB_Quick_Tune
             }
 
             Clipboard.SetText(copy);
+        }
+
+        private void txtNick_Click(object sender, EventArgs e)
+        {
+            setnickdialog nickDialog = new setnickdialog();
+
+            nickDialog.txtNick.Text = txtNick.Text;
+
+            if ( nickDialog.ShowDialog() == DialogResult.OK )
+            {
+                txtNick.Text = nickDialog.txtNick.Text;
+                setNick();
+            }
+        }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

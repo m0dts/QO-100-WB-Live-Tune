@@ -117,44 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>QO-100 WB Quick Tune V1.30 (February 2023)
-
-
-Main Operation:
-Add up to 8 receivers to the Rx List, any combination of Minitioune/Ryde should work.
-Click on each horizontal 'band' on the spectrum to control each receiver.
-The numbers on the left correspond to the receiver. 
-Right click spectrum for custom frequency set without signal.
-
-When Auto Tune is selected you can specify the dwell time and number of receivers to use for scanning.
-Auto Tune (hold) - Automatically tunes to next signal when the current signal stops.
-Auto Tune (timed) - Automatically tunes to the next signal after the defined dwell time.
-You can specify the number of receivers to scan, this will be starting from the first in the list. You can also choose to ignore the Beacon.
-
-Recent Changes:
-1.27:
-Pretty Spectrum. Specify FFT Data Source for local reception (ZR6TG)
-1.28:
-Fix missing band plan bars
-1.29:
-Wideband Spectrum monitor chat integration (ZR6TG)
-1.30:
-Chat Font Settings (ZR6TG)
-1.31:
-Chat Input Font, Receiver Type RX Labels Setting (ZR6TG)
-</value>
-  </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>104, 17</value>
-  </metadata>
-  <metadata name="timer_wh.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>191, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>50</value>
-  </metadata>
 </root>
