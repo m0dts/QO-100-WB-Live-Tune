@@ -1089,7 +1089,7 @@ namespace QO_100_WB_Quick_Tune
             {
                 chatForm.lbChat.Font = fontDialog.Font;
                 chatForm.lbUsers.Font = fontDialog.Font;
-
+                chatForm.txtMessage.Font = fontDialog.Font;
             }
         }
 
